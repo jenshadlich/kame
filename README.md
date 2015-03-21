@@ -1,8 +1,14 @@
-Kame
-====
+Kame Search Engine
+==================
 
-Yet Another Search Engine.
+A.k.a. Yet Another Search Engine. For my personal educational purposes.
 
 Structure:
-*  main (the actual search engine with all components)
-*  playground (misc experimental code)
+* crawler
+* document-store
+* index
+* playground (misc experimental code)
+* query-engine
+* rank
+* search-frontend
+* util
