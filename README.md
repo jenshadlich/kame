@@ -1,5 +1,5 @@
-kame
-=====
+Kame
+====
 
 Yet Another Search Engine.
 
