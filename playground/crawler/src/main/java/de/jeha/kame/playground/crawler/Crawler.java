@@ -84,7 +84,7 @@ public class Crawler {
         DefaultHttpClient httpClient = new DefaultHttpClient();
         HttpGet httpGet = new HttpGet(url);
         // Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)
-        // Mozilla/5.0 (compatible; Hayaibot/0.1)
+        // Mozilla/5.0 (compatible; Kamebot/0.1)
         httpGet.setHeader("User-Agent", "");
 
         StopWatch stopWatch = new StopWatch();
