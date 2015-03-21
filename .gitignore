@@ -1,0 +1,11 @@
+# Created by .ignore support plugin (hsz.mobi)
+kame.iml
+kame.ipr
+kame.iws
+playground/crawler/target
+playground/page-rank/target
+playground/ir/index/target
+playground/page-rank/page-rank.iml
+playground/ir/ir.iml
+playground/crawler/crawler.iml
+playground/ir/index/index.iml
