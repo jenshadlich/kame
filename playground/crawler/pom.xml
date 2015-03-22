@@ -4,7 +4,7 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.jeha.kame.playground</groupId>
-    <artifactId>crawler</artifactId>
+    <artifactId>playground-crawler</artifactId>
     <name>kame-playground-crawler</name>
     <packaging>jar</packaging>
     <version>0.1-SNAPSHOT</version>
