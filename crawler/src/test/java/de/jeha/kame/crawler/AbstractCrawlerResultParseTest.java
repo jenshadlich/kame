@@ -1,5 +1,7 @@
 package de.jeha.kame.crawler;
 
+import de.jeha.kame.crawler.http.ContentType;
+import de.jeha.kame.crawler.http.StatusCode;
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
@@ -14,7 +16,7 @@ public class AbstractCrawlerResultParseTest {
     }
 
     protected CrawlResult buildCrawlResult(String content) {
-        return new CrawlResult("", content, "text/html", 200, 0);
+        return new CrawlResult("", content, ContentType.TEXT_HTML.getValue(), StatusCode.SC_200.getCode(), 0);
     }
 
     protected CrawlResult buildCrawlResultFromResource(String resource) throws IOException {
