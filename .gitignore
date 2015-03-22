@@ -11,3 +11,5 @@ crawler/target
 playground/page-rank/playground-page-rank.iml
 playground/ir/playground-ir.iml
 playground/ir/index/playground-ir-index.iml
+search-frontend/search-frontend.iml
+playground/ir/target
