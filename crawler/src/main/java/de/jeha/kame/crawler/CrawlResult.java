@@ -47,7 +47,7 @@ public class CrawlResult {
     }
 
     public List<String> parse() {
-        List<String> ahrefs = new ArrayList<String>();
+        List<String> ahrefs = new ArrayList<>();
 
         if (this.content == null) {
             throw new IllegalStateException("pageContent must not be null");

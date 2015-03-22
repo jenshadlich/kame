@@ -23,7 +23,7 @@ public class Main {
     private static final String URL = "www.spreadshirt.de";
 
     public static void main(String... args) throws IOException {
-        Map<String, Boolean> links = new HashMap<String, Boolean>();
+        Map<String, Boolean> links = new HashMap<>();
         links.put("http://" + URL, Boolean.FALSE);
 
         int cnt = 0;
