@@ -58,7 +58,7 @@ public class CrawlResult {
             if (e.attr("href") != null && e.attr("href").startsWith("#")) {
                 continue;
             }
-            if (e.attr("href").startsWith("http://www.example.com")) {
+            if (e.attr("href").startsWith("http://www.example.com")) { // TODO: exclude at upper level
                 continue;
             }
             ahrefs.add(e.attr("href"));
