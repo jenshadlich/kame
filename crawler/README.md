@@ -1,5 +1,7 @@
 (empty)
 
+* domain name translation + cache
+* robots exclusion + cache
 * downloader
 * scheduler
-* queue
+* (priority) queue
