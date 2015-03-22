@@ -1,0 +1,1 @@
+go run src/kame-frontend.go
