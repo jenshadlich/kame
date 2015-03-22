@@ -44,12 +44,13 @@ public class Crawler {
 
         try {
             StatusLine statusLine = response.getStatusLine();
-            LOG.debug(statusLine.toString());
+            LOG.info(statusLine.toString());
 
             HttpEntity entity = response.getEntity();
             final String content = IOUtils.toString(entity.getContent());
             EntityUtils.consume(entity);
             final String contentType = entity.getContentType().getValue();
+            LOG.info(contentType);
 
             stopWatch.stop();
 
