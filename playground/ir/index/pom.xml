@@ -7,8 +7,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.jeha.kame.playground</groupId>
-    <artifactId>index</artifactId>
-    <name>hayai-playground-index</name>
+    <artifactId>playground-ir-index</artifactId>
+    <name>kame-playground-ir-index</name>
     <packaging>jar</packaging>
     <version>0.1-SNAPSHOT</version>
 
