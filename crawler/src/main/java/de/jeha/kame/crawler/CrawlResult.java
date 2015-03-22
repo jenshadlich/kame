@@ -38,6 +38,14 @@ public class CrawlResult {
         return statusCode;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public String getContentType() {
+        return contentType;
+    }
+
     public List<String> parse() {
         List<String> ahrefs = new ArrayList<String>();
 
