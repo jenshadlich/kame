@@ -5,7 +5,9 @@ kame.iws
 playground/crawler/target
 playground/page-rank/target
 playground/ir/index/target
-playground/page-rank/page-rank.iml
-playground/ir/ir.iml
-playground/crawler/crawler.iml
-playground/ir/index/index.iml
+playground/crawler/playground-crawler.iml
+crawler/crawler.iml
+crawler/target
+playground/page-rank/playground-page-rank.iml
+playground/ir/playground-ir.iml
+playground/ir/index/playground-ir-index.iml
