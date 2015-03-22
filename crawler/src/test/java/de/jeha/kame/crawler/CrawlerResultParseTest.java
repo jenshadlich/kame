@@ -19,6 +19,6 @@ public class CrawlerResultParseTest {
 
         List<String> links = new CrawlResult("", simple, "", 200, 0).parse();
         assertEquals(1, links.size());
-        assertEquals("http://www.google.de", links.get(0));
+        assertEquals("http://www.google.com", links.get(0));
     }
 }
