@@ -14,7 +14,7 @@ public class AbstractCrawlerResultParseTest {
     }
 
     protected CrawlResult buildCrawlResult(String content) {
-        return new CrawlResult("", content, "", 200, 0);
+        return new CrawlResult("", content, "text/html", 200, 0);
     }
 
     protected CrawlResult buildCrawlResultFromResource(String resource) throws IOException {
