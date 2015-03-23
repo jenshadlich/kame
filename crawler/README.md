@@ -4,4 +4,5 @@
 * robots exclusion + cache
 * downloader
 * scheduler
+** quota
 * (priority) queue
