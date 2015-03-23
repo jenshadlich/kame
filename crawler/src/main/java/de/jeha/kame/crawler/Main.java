@@ -1,5 +1,9 @@
 package de.jeha.kame.crawler;
 
+import com.mongodb.DB;
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
+import de.jeha.kame.crawler.dao.UrlDAO;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -18,11 +22,17 @@ import java.util.Set;
 public class Main {
 
     private static final Logger LOG = LoggerFactory.getLogger(Main.class);
-    private static final int MAX = 1;
+    private static final int MAX = 1000;
     private static final boolean SAME_DOMAIN = true;
     private static final String URL = "www.spreadshirt.de";
 
     public static void main(String... args) throws IOException {
+
+        final MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb://localhost"));
+        final DB crawlerDB = mongoClient.getDB("crawler");
+
+        final UrlDAO urlDAO = new UrlDAO(crawlerDB);
+
         Map<String, Boolean> links = new HashMap<>();
         links.put("http://" + URL, Boolean.FALSE);
 
@@ -61,6 +71,7 @@ public class Main {
                                 URI uri = URI.create(newLink);
                                 LOG.debug(uri.toString());
                                 newLinks.add(newLink);
+                                urlDAO.addUrl(newLink);
                             } catch (IllegalArgumentException e) {
                                 LOG.warn("skip invalid url: '{}'", newLink);
                             }
