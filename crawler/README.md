@@ -3,6 +3,5 @@
 * domain name translation + cache
 * robots exclusion + cache
 * downloader
-* scheduler
-** quota
+* scheduler + quota
 * (priority) queue
