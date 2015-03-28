@@ -3,6 +3,8 @@ package de.jeha.kame.crawler;
 import com.mongodb.DB;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
+import de.jeha.kame.crawler.core.ResultParser;
+import de.jeha.kame.crawler.types.CrawlResult;
 import de.jeha.kame.crawler.dao.UrlDAO;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -59,7 +61,9 @@ public class Main {
 
                     links.put(link, Boolean.TRUE);
 
-                    for (String rawNewLink : result.parse()) {
+                    ResultParser resultParser = new ResultParser();
+
+                    for (String rawNewLink : resultParser.parse(result)) {
                         String newLink = StringEscapeUtils.escapeHtml4(StringUtils.trim(rawNewLink));
 
                         if (SAME_DOMAIN && !newLink.contains(URL)) {

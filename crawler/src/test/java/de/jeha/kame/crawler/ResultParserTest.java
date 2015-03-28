@@ -1,5 +1,7 @@
 package de.jeha.kame.crawler;
 
+import de.jeha.kame.crawler.core.ResultParser;
+import de.jeha.kame.crawler.types.CrawlResult;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -10,7 +12,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * @author jenshadlich@googlemail.com
  */
-public class CrawlerResultParseTest extends AbstractCrawlerResultParseTest {
+public class ResultParserTest extends AbstractResultParserTest {
 
     @Test
     public void test() {
@@ -23,7 +25,7 @@ public class CrawlerResultParseTest extends AbstractCrawlerResultParseTest {
 
     @Test
     public void testSimple() throws IOException {
-        List<String> links = buildCrawlResultFromResource("/simple.html").parse();
+        List<String> links = new ResultParser().parse(buildCrawlResultFromResource("/simple.html"));
 
         assertEquals(1, links.size());
         assertEquals("http://www.google.com", links.get(0));

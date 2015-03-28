@@ -1,5 +1,6 @@
 package de.jeha.kame.crawler;
 
+import de.jeha.kame.crawler.types.CrawlResult;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.time.StopWatch;
 import org.apache.http.HttpEntity;
