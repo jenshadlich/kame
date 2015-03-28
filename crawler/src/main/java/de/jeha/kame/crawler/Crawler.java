@@ -1,8 +1,10 @@
 package de.jeha.kame.crawler;
 
 import de.jeha.kame.crawler.types.CrawlResult;
+import de.jeha.kame.crawler.types.Headers;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.time.StopWatch;
+import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.StatusLine;
@@ -13,6 +15,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author jenshadlich@googlemail.com
@@ -53,9 +57,18 @@ public class Crawler {
             final String contentType = entity.getContentType().getValue();
             LOG.info(contentType);
 
+            Map<String, String> headers = new HashMap<>();
+            for (Header header : response.getAllHeaders()) {
+                headers.put(header.getName(), header.getValue());
+            }
+
             stopWatch.stop();
 
-            return new CrawlResult(url, content, contentType, statusLine.getStatusCode(), stopWatch.getTime());
+            return new CrawlResult(
+                    url,
+                    content,
+                    new CrawlResult.Metadata(headers, statusLine.getStatusCode(), stopWatch.getTime())
+            );
         } finally {
             httpGet.releaseConnection();
         }

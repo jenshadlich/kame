@@ -18,9 +18,9 @@ public class ResultParserTest extends AbstractResultParserTest {
     public void test() {
         CrawlResult result = buildCrawlResult("");
 
-        assertEquals(200, result.getStatusCode());
-        assertEquals(0, result.getTimeTaken());
-        assertEquals("text/html", result.getContentType());
+        assertEquals(200, result.getMetadata().getStatusCode());
+        assertEquals(0, result.getMetadata().getTimeTaken());
+        assertEquals("text/html", result.getMetadata().getHeaders().getContentType());
     }
 
     @Test

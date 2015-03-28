@@ -57,7 +57,7 @@ public class Main {
                         break;
                     }
                     CrawlResult result = new Crawler(link).execute();
-                    LOG.debug("Status code: {}", result.getStatusCode());
+                    LOG.debug("Status code: {}", result.getMetadata().getStatusCode());
 
                     links.put(link, Boolean.TRUE);
 
