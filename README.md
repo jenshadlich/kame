@@ -1,7 +1,7 @@
 Kame Search Engine
 ==================
 
-A.k.a. Yet Another Search Engine. For my personal educational purposes.
+A.k.a. Yet Another Search Engine. For my personal educational purposes. At the moment far from being working or useful.
 
 Structure:
 * crawler
