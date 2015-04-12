@@ -13,3 +13,5 @@ playground/ir/playground-ir.iml
 playground/ir/index/playground-ir-index.iml
 search-frontend/search-frontend.iml
 playground/ir/target
+crawler/crawler-core/target
+crawler/crawler-core/crawler-core.iml

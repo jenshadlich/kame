@@ -4,8 +4,8 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.jeha.kame</groupId>
-    <artifactId>crawler</artifactId>
-    <name>kame-crawler</name>
+    <artifactId>crawler-core</artifactId>
+    <name>kame-crawler-core</name>
     <packaging>jar</packaging>
     <version>0.1-SNAPSHOT</version>
     <description>Crawler</description>
