@@ -15,3 +15,5 @@ search-frontend/search-frontend.iml
 playground/ir/target
 crawler/crawler-core/target
 crawler/crawler-core/crawler-core.iml
+crawler/crawler-cli/crawler-cli.iml
+crawler/crawler-cli/target
