@@ -1,0 +1,67 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>de.jeha.kame</groupId>
+    <artifactId>crawler-cli</artifactId>
+    <name>kame-crawler-cli</name>
+    <packaging>jar</packaging>
+    <version>0.1-SNAPSHOT</version>
+    <description>Crawler Command Line Interface</description>
+
+    <developers>
+        <developer>
+            <name>Jens Hadlich</name>
+            <email>jenshadlich@googlemail.com</email>
+        </developer>
+    </developers>
+
+    <properties>
+        <project.target.jdk>1.8</project.target.jdk>
+        <project.source.jdk>1.8</project.source.jdk>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <!-- project dependency versions -->
+        <crawler-core.version>0.1-SNAPSHOT</crawler-core.version>
+        <logback.version>1.1.2</logback.version>
+        <!-- plugin versions -->
+        <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>de.jeha.kame</groupId>
+            <artifactId>crawler-core</artifactId>
+            <version>${crawler-core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${project.source.jdk}</source>
+                    <target>${project.target.jdk}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
