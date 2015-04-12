@@ -10,12 +10,26 @@
     <version>0.1-SNAPSHOT</version>
     <description>Crawler</description>
 
-    <properties>
-        <slf4j.version>1.6.1</slf4j.version>
-        <commons-lang3.version>3.0</commons-lang3.version>
-        <commons-io.version>2.4</commons-io.version>
+    <developers>
+        <developer>
+            <name>Jens Hadlich</name>
+            <email>jenshadlich@googlemail.com</email>
+        </developer>
+    </developers>
 
-        <maven-compiler-plugin.version>3.0</maven-compiler-plugin.version>
+    <properties>
+        <project.target.jdk>1.8</project.target.jdk>
+        <project.source.jdk>1.8</project.source.jdk>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <!-- project dependency versions -->
+        <slf4j.version>1.7.10</slf4j.version>
+        <junit.version>4.12</junit.version>
+        <logback.version>1.1.2</logback.version>
+        <commons-io.version>2.4</commons-io.version>
+        <commons-lang3.version>3.3</commons-lang3.version>
+        <!-- plugin versions -->
+        <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
     </properties>
 
     <dependencies>
@@ -42,14 +56,14 @@
         </dependency>
 
         <dependency>
-        	<groupId>org.apache.httpcomponents</groupId>
-        	<artifactId>httpclient</artifactId>
-        	<version>4.2.1</version>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.2.1</version>
         </dependency>
         <dependency>
-        	<groupId>org.jsoup</groupId>
-        	<artifactId>jsoup</artifactId>
-        	<version>1.6.3</version>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.6.3</version>
         </dependency>
 
         <dependency>
@@ -61,7 +75,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.11</version>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -80,9 +94,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin.version}</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                    <encoding>UTF-8</encoding>
+                    <source>${project.source.jdk}</source>
+                    <target>${project.target.jdk}</target>
                 </configuration>
             </plugin>
         </plugins>
