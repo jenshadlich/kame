@@ -5,6 +5,7 @@ A.k.a. Yet Another Search Engine. For my personal educational purposes. At the m
 
 Structure:
 * crawler
+* data
 * document-store
 * index
 * playground (misc experimental code)
