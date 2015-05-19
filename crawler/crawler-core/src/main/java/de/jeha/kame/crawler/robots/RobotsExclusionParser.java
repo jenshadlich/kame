@@ -72,8 +72,13 @@ public class RobotsExclusionParser {
                         disallowMap.get(currentUserAgent).add(value);
                     }
                     break;
-                default:
+                case Constants.ALLOW:
+                case Constants.CRAWL_DELAY:
+                case Constants.SITEMAP:
                     LOG.info("skip line {}, unsupported instruction: '{}'", lineCounter, line);
+                    break;
+                default:
+                    LOG.warn("skip line {}, unknown instruction: '{}'", lineCounter, line);
                     break;
             }
         }
