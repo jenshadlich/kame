@@ -1,2 +1,2 @@
-User-agent: * # match all bots
-Disallow: /   # and keep them out
+User-agent: *   # match all bots
+Disallow: /     # and keep them out
