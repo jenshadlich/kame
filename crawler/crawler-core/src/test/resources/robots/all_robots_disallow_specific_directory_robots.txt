@@ -1,0 +1,2 @@
+User-agent: *           # for all robots
+Disallow: /disallowed/  # one specific directory is not allowed

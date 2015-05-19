@@ -1,0 +1,2 @@
+User-agent: *           # for all robots
+Disallow: /d/file.html  # only one file is not allowed
