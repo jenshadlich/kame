@@ -94,6 +94,16 @@ public class RobotsExclusionParserTest {
         assertEquals("https://www.google.com/edu/sitemap.xml", result.getSitemaps().get(1));
     }
 
+    @Test
+    public void spreadshirtRobots() throws IOException {
+        RobotsExclusion result =
+                new RobotsExclusionParser().parse(getInputStreamForTest("live-examples/spreadshirt.de_robots.txt"));
+
+        assertTrue(result.allowed(UserAgents.ANY, "/"));
+        assertTrue(result.disallowed("Yandex", "/"));
+        assertTrue(result.disallowed(UserAgents.ANY, "/de/DE/Widget/"));
+    }
+
     // -----------------------------------------------------------------------------------------------------------------
 
     private InputStream getInputStreamForTest(String resource) {
