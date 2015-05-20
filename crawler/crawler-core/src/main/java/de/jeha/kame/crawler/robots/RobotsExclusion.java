@@ -3,7 +3,6 @@ package de.jeha.kame.crawler.robots;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,9 +12,11 @@ import java.util.Map;
 public class RobotsExclusion {
 
     private final Map<String, List<String>> disallowMap;
+    private final List<String> sitemaps;
 
-    public RobotsExclusion(Map<String, List<String>> disallowMap) {
+    public RobotsExclusion(Map<String, List<String>> disallowMap, List<String> sitemaps) {
         this.disallowMap = disallowMap;
+        this.sitemaps = sitemaps;
         if (disallowMap.isEmpty()) {
             this.disallowMap.put(UserAgents.ANY, Arrays.asList(""));
         }
@@ -69,6 +70,10 @@ public class RobotsExclusion {
         }
 
         return false;
+    }
+
+    public List<String> getSitemaps() {
+        return sitemaps;
     }
 
 }

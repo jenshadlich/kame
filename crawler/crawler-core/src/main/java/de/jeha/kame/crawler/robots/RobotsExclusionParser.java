@@ -14,12 +14,12 @@ import java.util.Map;
 
 /**
  * Parser for robots.txt files. Currently limited to the original standard which means it does only support User-agent
- * and Disallow instructions (no Allow, Crawl-Delay or Sitemap).
+ * and Disallow instructions and nonstandard Sitemap (no Allow, Crawl-Delay).
  *
  * See http://www.robotstxt.org/
  *
  * @author jenshadlich@googlemail.com
- * @todo support Allow, Crawl-Delay, Sitemap instructions
+ * @todo support Allow, Crawl-Delay instructions
  */
 public class RobotsExclusionParser {
 
@@ -36,6 +36,7 @@ public class RobotsExclusionParser {
         List<String> lines = IOUtils.readLines(robotsFileInputStream);
 
         Map<String, List<String>> disallowMap = new HashMap<>();
+        List<String> sitemaps = new ArrayList<>();
         int lineCounter = 0;
         String currentUserAgent = null;
 
@@ -51,7 +52,7 @@ public class RobotsExclusionParser {
                 continue;
             }
 
-            String parts[] = trimmedLineWithoutComments.split(Constants.FIELD_DELIM);
+            String parts[] = StringUtils.split(trimmedLineWithoutComments, Constants.FIELD_DELIM, 2);
             if (parts.length < 1 || parts.length > 2) {
                 LOG.warn("skip line {}, illegal format: '{}'", lineCounter, line);
                 continue;
@@ -76,14 +77,16 @@ public class RobotsExclusionParser {
                 // currently unsupported, skip
                 case Constants.ALLOW:
                 case Constants.CRAWL_DELAY:
-                case Constants.SITEMAP:
                     LOG.info("skip line {}, unsupported instruction: '{}'", lineCounter, line);
+                    break;
+                case Constants.SITEMAP:
+                    sitemaps.add(value);
                     break;
                 default:
                     LOG.warn("skip line {}, unknown instruction: '{}'", lineCounter, line);
                     break;
             }
         }
-        return new RobotsExclusion(disallowMap);
+        return new RobotsExclusion(disallowMap, sitemaps);
     }
 }

@@ -1,11 +1,11 @@
 package de.jeha.kame.crawler.robots;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -76,6 +76,22 @@ public class RobotsExclusionParserTest {
         assertTrue(result.allowed("Googlebot", "/"));
         assertTrue(result.allowed("Googlebot", "/foobar"));
         assertTrue(result.allowed("Googlebot", "/foobar/"));
+    }
+
+    @Test
+    public void googleRobots() throws IOException {
+        RobotsExclusion result =
+                new RobotsExclusionParser().parse(getInputStreamForTest("live-examples/google.com_robots.txt"));
+
+        assertTrue(result.allowed(UserAgents.ANY, "/"));
+
+        assertTrue(result.disallowed(UserAgents.ANY, "/globalmarketfinder/"));
+        assertTrue(result.disallowed(UserAgents.ANY, "/globalmarketfinder/foo.bar"));
+        assertTrue(result.disallowed(UserAgents.ANY, "/globalmarketfinder/foo/bar"));
+        assertFalse(result.allowed(UserAgents.ANY, "/globalmarketfinder/foobar.html")); // TODO: should be true if Allow is supported
+
+        assertEquals(17, result.getSitemaps().size());
+        assertEquals("https://www.google.com/edu/sitemap.xml", result.getSitemaps().get(1));
     }
 
     // -----------------------------------------------------------------------------------------------------------------
