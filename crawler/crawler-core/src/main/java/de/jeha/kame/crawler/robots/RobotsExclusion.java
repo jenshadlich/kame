@@ -17,7 +17,7 @@ public class RobotsExclusion {
     public RobotsExclusion(Map<String, List<String>> disallowMap) {
         this.disallowMap = disallowMap;
         if (disallowMap.isEmpty()) {
-            this.disallowMap.put("*", Arrays.asList(""));
+            this.disallowMap.put(UserAgents.ANY, Arrays.asList(""));
         }
     }
 
