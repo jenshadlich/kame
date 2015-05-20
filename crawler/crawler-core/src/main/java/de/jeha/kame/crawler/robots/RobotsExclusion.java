@@ -12,7 +12,7 @@ import java.util.Map;
  */
 public class RobotsExclusion {
 
-    private Map<String, List<String>> disallowMap = new HashMap<>();
+    private final Map<String, List<String>> disallowMap;
 
     public RobotsExclusion(Map<String, List<String>> disallowMap) {
         this.disallowMap = disallowMap;

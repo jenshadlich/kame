@@ -19,6 +19,7 @@ import java.util.Map;
  * See http://www.robotstxt.org/
  *
  * @author jenshadlich@googlemail.com
+ * @todo support Allow, Crawl-Delay, Sitemap instructions
  */
 public class RobotsExclusionParser {
 
@@ -72,6 +73,7 @@ public class RobotsExclusionParser {
                         disallowMap.get(currentUserAgent).add(value);
                     }
                     break;
+                // currently unsupported, skip
                 case Constants.ALLOW:
                 case Constants.CRAWL_DELAY:
                 case Constants.SITEMAP:
