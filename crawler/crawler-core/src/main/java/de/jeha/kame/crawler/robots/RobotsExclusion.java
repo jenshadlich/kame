@@ -1,5 +1,6 @@
 package de.jeha.kame.crawler.robots;
 
+import de.jeha.kame.crawler.robots.utils.MatchUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
@@ -58,12 +59,18 @@ public class RobotsExclusion {
         // test specified userAgent
         if (disallowMap.containsKey(userAgent.toLowerCase())) {
             for (String disallowedPath : disallowMap.get(userAgent.toLowerCase())) {
+                if("".equals(disallowedPath)) {
+                    return false;
+                }
                 // exact match
                 if (StringUtils.equalsIgnoreCase(path, disallowedPath)) {
                     return true;
                 }
                 // disallow subdirectories
                 if (disallowedPath.endsWith("/") && StringUtils.startsWithIgnoreCase(path, disallowedPath)) {
+                    return true;
+                }
+                if (MatchUtils.wildcardMatch(path, disallowedPath)) {
                     return true;
                 }
             }

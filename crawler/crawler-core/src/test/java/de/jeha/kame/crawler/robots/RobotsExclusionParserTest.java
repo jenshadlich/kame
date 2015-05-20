@@ -102,6 +102,11 @@ public class RobotsExclusionParserTest {
         assertTrue(result.allowed(UserAgents.ANY, "/"));
         assertTrue(result.disallowed("Yandex", "/"));
         assertTrue(result.disallowed(UserAgents.ANY, "/de/DE/Widget/"));
+
+        // /*-C6220*
+        assertTrue(result.disallowed(UserAgents.ANY, "/-C6220"));
+        assertTrue(result.disallowed(UserAgents.ANY, "/foo-C6220bar"));
+        assertTrue(result.disallowed(UserAgents.ANY, "/1/foo-C6220bar"));
     }
 
     // -----------------------------------------------------------------------------------------------------------------
