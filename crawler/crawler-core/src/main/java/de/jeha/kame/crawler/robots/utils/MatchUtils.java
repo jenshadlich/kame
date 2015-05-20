@@ -17,7 +17,7 @@ public class MatchUtils {
         String remainder = text;
 
         // no match possible if the 'text' does not start with the first part
-        if (parts.length > 0 && !remainder.startsWith(parts[0])) {
+        if (parts.length > 0 && !pattern.startsWith("*") && !remainder.startsWith(parts[0])) {
             return false;
         }
 
@@ -27,10 +27,12 @@ public class MatchUtils {
             if (idx == -1) {
                 return false;
             }
+
             remainder = remainder.substring(idx + part.length());
         }
 
-        return true;
+        // if the pattern does not end with a wildcard the remainder must be empty
+        return remainder.isEmpty() || pattern.endsWith("*");
     }
 
 }

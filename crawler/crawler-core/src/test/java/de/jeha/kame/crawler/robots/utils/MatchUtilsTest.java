@@ -12,9 +12,14 @@ public class MatchUtilsTest {
 
     @Test
     public void test() {
+
         assertTrue(MatchUtils.wildcardMatch("/g/foobar.html", "/g/*.html"));
+        assertTrue(MatchUtils.wildcardMatch("wildcard", "w*ldc*rd"));
+        assertTrue(MatchUtils.wildcardMatch("wildcard", "*i***a**"));
+
         assertFalse(MatchUtils.wildcardMatch("/g/foobar.xml", "/g/*.html"));
         assertFalse(MatchUtils.wildcardMatch("/f/g/foobar.html", "/g/*.html"));
+        assertFalse(MatchUtils.wildcardMatch("/g/foobar.htmlb", "/g/*.html"));
     }
 
 }
