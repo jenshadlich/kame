@@ -22,6 +22,12 @@ public class MatchUtils {
         }
 
         for (String part : parts) {
+            boolean hasEndChar = part.endsWith("$");
+
+            if (hasEndChar) {
+                part = StringUtils.substringBefore(part, "$");
+            }
+
             int idx = remainder.indexOf(part);
 
             if (idx == -1) {
@@ -29,6 +35,10 @@ public class MatchUtils {
             }
 
             remainder = remainder.substring(idx + part.length());
+
+            if (hasEndChar && remainder.length() > 1) {
+                return false;
+            }
         }
 
         // if the pattern does not end with a wildcard the remainder must be empty
