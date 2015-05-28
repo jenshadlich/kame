@@ -10,7 +10,7 @@ mvn clean install
 java -jar target/crawler-service-0.1-SNAPSHOT.jar server config.yaml
 ```
 
-##### Post some url to crawl:
+##### POST some url to crawl:
 ```
 curl -H "Content-Type: application/json" -X POST -d '{"url":"<url>"}' http://localhost:8080/crawl | jsonpp
 ```
