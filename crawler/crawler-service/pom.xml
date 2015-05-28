@@ -15,14 +15,25 @@
     </developers>
 
     <properties>
+        <project.target.jdk>1.8</project.target.jdk>
+        <project.source.jdk>1.8</project.source.jdk>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <!-- project dependency versions -->
+        <kame.crawler.core.version>0.1-SNAPSHOT</kame.crawler.core.version>
         <dropwizard.version>0.8.0</dropwizard.version>
+        <dropwizard-spring.version>0.6.0</dropwizard-spring.version>
         <spring.version>4.1.5.RELEASE</spring.version>
+        <!-- plugin versions -->
         <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>de.jeha.kame</groupId>
+            <artifactId>crawler-core</artifactId>
+            <version>${kame.crawler.core.version}</version>
+        </dependency>
         <dependency>
             <groupId>io.dropwizard</groupId>
             <artifactId>dropwizard-core</artifactId>
@@ -61,7 +72,7 @@
         <dependency>
             <groupId>com.hmsonline</groupId>
             <artifactId>dropwizard-spring</artifactId>
-            <version>0.6.0</version>
+            <version>${dropwizard-spring.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.springframework</groupId>
@@ -105,8 +116,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin.version}</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>${project.source.jdk}</source>
+                    <target>${project.target.jdk}</target>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
