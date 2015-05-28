@@ -8,9 +8,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class CrawlResponse {
 
     private final String id;
+    private final int statusCode;
 
-    public CrawlResponse(String id) {
+    public CrawlResponse(String id, int statusCode) {
         this.id = id;
+        this.statusCode = statusCode;
     }
 
     @JsonProperty
@@ -18,4 +20,8 @@ public class CrawlResponse {
         return id;
     }
 
+    @JsonProperty
+    public int getStatusCode() {
+        return statusCode;
+    }
 }
