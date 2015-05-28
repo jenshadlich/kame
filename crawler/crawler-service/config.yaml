@@ -1,0 +1,15 @@
+spring:
+  appContextType: web
+  configLocationsType: classpath
+
+  configLocations:
+    - dropwizard-spring.xml
+
+  resources:
+    - crawlResource
+
+  enabledJerseyFeatures:
+    - com.sun.jersey.config.feature.CanonicalizeURIPath
+
+  disabledJerseyFeatures:
+    - com.sun.jersey.config.feature.DisableWADL
