@@ -28,6 +28,8 @@
         <logback.version>1.1.2</logback.version>
         <commons-io.version>2.4</commons-io.version>
         <commons-lang3.version>3.3</commons-lang3.version>
+        <httpclient.version>4.2.1</httpclient.version>
+        <jsoup.version>1.6.3</jsoup.version>
         <!-- plugin versions -->
         <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
     </properties>
@@ -52,12 +54,12 @@
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
-            <version>4.2.1</version>
+            <version>${httpclient.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jsoup</groupId>
             <artifactId>jsoup</artifactId>
-            <version>1.6.3</version>
+            <version>${jsoup.version}</version>
         </dependency>
 
         <dependency>
