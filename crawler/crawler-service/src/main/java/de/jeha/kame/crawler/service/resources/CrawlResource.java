@@ -1,11 +1,12 @@
-package de.jeha.kame.crawler.resources;
+package de.jeha.kame.crawler.service.resources;
 
 
 import com.codahale.metrics.annotation.Timed;
 import de.jeha.kame.crawler.Crawler;
-import de.jeha.kame.crawler.resources.dto.CrawlRequest;
-import de.jeha.kame.crawler.resources.dto.CrawlResponse;
+import de.jeha.kame.crawler.service.resources.dto.CrawlRequest;
+import de.jeha.kame.crawler.service.resources.dto.CrawlResponse;
 import de.jeha.kame.crawler.types.CrawlResult;
+import org.springframework.stereotype.Service;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
@@ -16,6 +17,7 @@ import java.io.IOException;
 import java.util.UUID;
 
 @Path("/")
+@Service
 public class CrawlResource {
 
     @POST

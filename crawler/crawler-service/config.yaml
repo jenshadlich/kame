@@ -8,6 +8,9 @@ spring:
   resources:
     - crawlResource
 
+  healthChecks:
+    - databaseHealthCheck
+
   enabledJerseyFeatures:
     - com.sun.jersey.config.feature.CanonicalizeURIPath
 

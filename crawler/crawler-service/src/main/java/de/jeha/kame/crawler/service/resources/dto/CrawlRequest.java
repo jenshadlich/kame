@@ -1,4 +1,4 @@
-package de.jeha.kame.crawler.resources.dto;
+package de.jeha.kame.crawler.service.resources.dto;
 
 /**
  * @author jenshadlich@googlemail.com
