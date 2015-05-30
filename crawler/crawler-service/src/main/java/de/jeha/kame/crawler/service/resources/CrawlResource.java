@@ -6,6 +6,8 @@ import de.jeha.kame.crawler.Crawler;
 import de.jeha.kame.crawler.service.resources.dto.CrawlRequest;
 import de.jeha.kame.crawler.service.resources.dto.CrawlResponse;
 import de.jeha.kame.crawler.types.CrawlResult;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.ws.rs.Consumes;
@@ -20,13 +22,15 @@ import java.util.UUID;
 @Service
 public class CrawlResource {
 
+    private static final Logger LOG = LoggerFactory.getLogger(CrawlResult.class);
+
     @POST
     @Path("/crawl")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Timed
     public Object crawl(CrawlRequest request) {
-        System.out.println(request.getUrl());
+        LOG.info("{}", request.getUrl());
 
         Crawler crawler = new Crawler(request.getUrl());
         try {
