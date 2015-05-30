@@ -1,4 +1,4 @@
-package de.jeha.kame.crawler.types;
+package de.jeha.kame.crawler.core.types;
 
 import java.util.HashMap;
 import java.util.Map;

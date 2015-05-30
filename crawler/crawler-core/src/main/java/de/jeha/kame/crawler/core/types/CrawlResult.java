@@ -1,7 +1,4 @@
-package de.jeha.kame.crawler.types;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+package de.jeha.kame.crawler.core.types;
 
 import java.util.Map;
 

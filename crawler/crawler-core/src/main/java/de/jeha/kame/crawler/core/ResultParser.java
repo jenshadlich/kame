@@ -1,6 +1,6 @@
 package de.jeha.kame.crawler.core;
 
-import de.jeha.kame.crawler.types.CrawlResult;
+import de.jeha.kame.crawler.core.types.CrawlResult;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;

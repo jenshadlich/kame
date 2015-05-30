@@ -1,4 +1,4 @@
-package de.jeha.kame.crawler.robots.utils;
+package de.jeha.kame.crawler.core.robots.utils;
 
 import org.junit.Test;
 

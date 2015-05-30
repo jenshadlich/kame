@@ -1,4 +1,4 @@
-package de.jeha.kame.crawler.http;
+package de.jeha.kame.crawler.core.http;
 
 /**
  * @author jenshadlich@googlemail.com

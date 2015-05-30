@@ -1,9 +1,9 @@
-package de.jeha.kame.crawler;
+package de.jeha.kame.crawler.core;
 
-import de.jeha.kame.crawler.types.CrawlResult;
-import de.jeha.kame.crawler.http.ContentType;
-import de.jeha.kame.crawler.http.StatusCode;
-import de.jeha.kame.crawler.types.Headers;
+import de.jeha.kame.crawler.core.types.CrawlResult;
+import de.jeha.kame.crawler.core.http.ContentType;
+import de.jeha.kame.crawler.core.http.StatusCode;
+import de.jeha.kame.crawler.core.types.Headers;
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;

@@ -1,7 +1,6 @@
-package de.jeha.kame.crawler;
+package de.jeha.kame.crawler.core;
 
-import de.jeha.kame.crawler.types.CrawlResult;
-import de.jeha.kame.crawler.types.Headers;
+import de.jeha.kame.crawler.core.types.CrawlResult;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.time.StopWatch;
 import org.apache.http.Header;

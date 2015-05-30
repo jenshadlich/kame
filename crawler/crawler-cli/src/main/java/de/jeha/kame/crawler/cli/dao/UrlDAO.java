@@ -1,4 +1,4 @@
-package de.jeha.kame.crawler.dao;
+package de.jeha.kame.crawler.cli.dao;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;

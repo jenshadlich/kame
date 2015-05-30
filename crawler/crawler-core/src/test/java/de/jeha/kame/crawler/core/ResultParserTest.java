@@ -1,7 +1,6 @@
-package de.jeha.kame.crawler;
+package de.jeha.kame.crawler.core;
 
-import de.jeha.kame.crawler.core.ResultParser;
-import de.jeha.kame.crawler.types.CrawlResult;
+import de.jeha.kame.crawler.core.types.CrawlResult;
 import org.junit.Test;
 
 import java.io.IOException;

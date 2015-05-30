@@ -2,10 +2,10 @@ package de.jeha.kame.crawler.service.resources;
 
 
 import com.codahale.metrics.annotation.Timed;
-import de.jeha.kame.crawler.Crawler;
+import de.jeha.kame.crawler.core.Crawler;
+import de.jeha.kame.crawler.core.types.CrawlResult;
 import de.jeha.kame.crawler.service.resources.dto.CrawlRequest;
 import de.jeha.kame.crawler.service.resources.dto.CrawlResponse;
-import de.jeha.kame.crawler.types.CrawlResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

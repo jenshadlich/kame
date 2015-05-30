@@ -1,4 +1,4 @@
-package de.jeha.kame.crawler.charsets;
+package de.jeha.kame.crawler.core.charsets;
 
 import java.nio.charset.Charset;
 
