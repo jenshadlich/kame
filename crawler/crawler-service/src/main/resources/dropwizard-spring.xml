@@ -11,7 +11,6 @@
     <context:annotation-config/>
     <context:component-scan base-package="de.jeha.kame.crawler.resources"/>
 
-    <bean id="crawlResource" class="de.jeha.kame.crawler.resources.CrawlResource">
-    </bean>
+    <bean id="crawlResource" class="de.jeha.kame.crawler.resources.CrawlResource" />
 
 </beans>
