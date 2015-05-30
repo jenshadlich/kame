@@ -31,21 +31,21 @@ public class CrawlResource {
     @Timed
     public Object crawl(CrawlRequest request) {
         LOG.info("{}", request.getUrl());
+        final String crawlId = UUID.randomUUID().toString();
 
         Crawler crawler = new Crawler(request.getUrl());
         try {
             CrawlResult result = crawler.execute();
 
-            return new CrawlResponse(
-                    UUID.randomUUID().toString(),
+            return CrawlResponse.withSuccess(
+                    crawlId,
                     result.getMetadata().getStatusCode()
             );
-
         } catch (IOException e) {
-            e.printStackTrace();
-        }
+            LOG.warn("An I/O error occurred", e);
 
-        return null; // TODO: return proper result on error
+            return CrawlResponse.withError(crawlId, e.getMessage());
+        }
     }
 
 }
