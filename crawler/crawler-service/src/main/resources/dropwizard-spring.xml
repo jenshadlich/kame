@@ -9,8 +9,6 @@
                            http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd">
 
     <context:annotation-config/>
-    <context:component-scan base-package="de.jeha.kame.crawler.resources"/>
-
-    <bean id="crawlResource" class="de.jeha.kame.crawler.resources.CrawlResource" />
+    <context:component-scan base-package="de.jeha.kame.crawler.service"/>
 
 </beans>
