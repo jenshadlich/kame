@@ -11,4 +11,12 @@
     <context:annotation-config/>
     <context:component-scan base-package="de.jeha.kame.crawler.service"/>
 
+    <!--
+    <bean id="dropwizardPropertyHolder" class="de.jeha.kame.crawler.service.DropwizardPropertyHolder">
+        <property name="mongoDb.databaseConnectionString">
+            <util:property-path path="dropwizard.configuration.mongoDb.databaseConnectionString"></util:property-path>
+        </property>
+    </bean>
+    -->
+
 </beans>
