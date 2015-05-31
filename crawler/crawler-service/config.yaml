@@ -1,3 +1,7 @@
+apiMetadata:
+    title: kame crawler-service
+    contact: jenshadlich@googlemail.com
+
 spring:
   appContextType: web
   configLocationsType: classpath
