@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 /**
  * @author jenshadlich@googlemail.com
  */
-@Service("mongoRepository")
-public class MongoRepository {
+@Service("mongoDbRepository")
+public class MongoDbRepository {
 
     final MongoClient client = new MongoClient(new MongoClientURI("mongodb://localhost"));
 
