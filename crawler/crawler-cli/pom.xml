@@ -25,7 +25,7 @@
         <!-- project dependency versions -->
         <crawler-core.version>0.1-SNAPSHOT</crawler-core.version>
         <logback.version>1.1.2</logback.version>
-        <mongodb-driver.version>2.13.0</mongodb-driver.version>
+        <mongodb-driver.version>3.0.2</mongodb-driver.version>
         <!-- plugin versions -->
         <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
     </properties>
