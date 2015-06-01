@@ -1,2 +1,7 @@
 mongoDb:
   url: mongodb://localhost
+
+logging:
+  level: INFO
+  loggers:
+    "de.jeha.kame": DEBUG
