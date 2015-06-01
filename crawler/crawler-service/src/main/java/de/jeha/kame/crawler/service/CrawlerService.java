@@ -10,10 +10,10 @@ import io.dropwizard.setup.Environment;
 /**
  * @author jenshadlich@googlemail.com
  */
-public class CrawlerServiceApplication extends Application<CrawlerServiceConfiguration> {
+public class CrawlerService extends Application<CrawlerServiceConfiguration> {
 
     public static void main(String[] args) throws Exception {
-        new CrawlerServiceApplication().run(args);
+        new CrawlerService().run(args);
     }
 
     @Override
