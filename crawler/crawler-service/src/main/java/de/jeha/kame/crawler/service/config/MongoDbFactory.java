@@ -8,20 +8,22 @@ import com.mongodb.MongoClient;
  */
 public class MongoDbFactory {
 
+    @JsonProperty
     private String url;
 
     @JsonProperty
+    private String database;
+
     public String getUrl() {
         return url;
     }
 
-    @JsonProperty
-    public void setUrl(String url) {
-        this.url = url;
+    public String getDatabase() {
+        return database;
     }
 
     public MongoDbConfiguration build() {
-        return new MongoDbConfiguration(url);
+        return new MongoDbConfiguration(url, database);
     }
 
     public MongoClient buildClient() {

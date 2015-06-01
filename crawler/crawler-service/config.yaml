@@ -1,7 +1,19 @@
-mongoDb:
-  url: mongodb://localhost
+server:
+  type: default
+  maxThreads: 32
+  applicationConnectors:
+    - type: http
+      port: 8080
+      maxRequestHeaderSize: 8KiB
+      maxResponseHeaderSize: 8KiB
+      acceptorThreads: 2
+      selectorThreads: 2
 
 logging:
   level: INFO
   loggers:
     "de.jeha.kame": DEBUG
+
+mongoDb:
+  url: mongodb://localhost
+  database: crawler-service

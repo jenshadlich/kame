@@ -6,13 +6,19 @@ package de.jeha.kame.crawler.service.config;
 public class MongoDbConfiguration {
 
     private final String url;
+    private final String database;
 
-    public MongoDbConfiguration(String url) {
+    public MongoDbConfiguration(String url, String database) {
         this.url = url;
+        this.database = database;
     }
 
     public String getUrl() {
         return url;
+    }
+
+    public String getDatabase() {
+        return database;
     }
 
 }
