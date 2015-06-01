@@ -33,6 +33,10 @@ public class CrawlerServiceApplication extends Application<CrawlerServiceConfigu
         environment.jersey().register(new CrawlResource());
 
         environment.healthChecks().register("mongoDb", new MongoDbHealthCheck());
+
+        // TODO: move to config
+        environment.jersey().disable("com.sun.jersey.config.feature.DisableWADL");
+        environment.jersey().enable("com.sun.jersey.config.feature.CanonicalizeURIPath");
     }
 
 }
