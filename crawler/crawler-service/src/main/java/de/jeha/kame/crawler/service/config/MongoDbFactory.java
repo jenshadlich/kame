@@ -14,6 +14,8 @@ public class MongoDbFactory {
     @JsonProperty
     private String database;
 
+    private MongoClient mongoClient;
+
     public String getUrl() {
         return url;
     }
@@ -27,7 +29,10 @@ public class MongoDbFactory {
     }
 
     public MongoClient buildClient() {
-        return new MongoClient(url);
+        if (mongoClient == null) {
+            mongoClient = new MongoClient(url);
+        }
+        return mongoClient;
     }
 
 }

@@ -28,11 +28,9 @@ public class CrawlerService extends Application<CrawlerServiceConfiguration> {
 
     @Override
     public void run(CrawlerServiceConfiguration configuration, Environment environment) {
-        System.out.println("mongoDb.url: " + configuration.getMongoFactory().getUrl());
-
         environment.jersey().register(new CrawlResource());
 
-        environment.healthChecks().register("mongoDb", new MongoDbHealthCheck());
+        environment.healthChecks().register("mongoDb", new MongoDbHealthCheck(configuration.getMongoDb()));
 
         // TODO: move to config
         environment.jersey().disable("com.sun.jersey.config.feature.DisableWADL");

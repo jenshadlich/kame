@@ -22,7 +22,7 @@ public class CrawlerServiceConfiguration extends Configuration {
     }
 
     @JsonProperty("mongoDb")
-    public MongoDbFactory getMongoFactory() {
+    public MongoDbFactory getMongoDb() {
         return this.mongoDb;
     }
 }

@@ -18,5 +18,5 @@ logging:
     "de.jeha.kame": DEBUG
 
 mongoDb:
-  url: mongodb://localhost
+  url: localhost:27017
   database: crawler-service
