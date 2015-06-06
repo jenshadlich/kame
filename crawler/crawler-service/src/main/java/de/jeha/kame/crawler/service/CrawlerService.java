@@ -6,6 +6,7 @@ import de.jeha.kame.crawler.service.resources.CrawlResource;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
+import org.glassfish.jersey.server.ServerProperties;
 
 /**
  * @author jenshadlich@googlemail.com
@@ -32,9 +33,7 @@ public class CrawlerService extends Application<CrawlerServiceConfiguration> {
 
         environment.healthChecks().register("mongoDb", new MongoDbHealthCheck(configuration.getMongoDb()));
 
-        // TODO: move to config
-        environment.jersey().disable("com.sun.jersey.config.feature.DisableWADL");
-        environment.jersey().enable("com.sun.jersey.config.feature.CanonicalizeURIPath");
+        environment.jersey().disable(ServerProperties.WADL_FEATURE_DISABLE);
     }
 
 }
