@@ -6,6 +6,7 @@ import de.jeha.kame.crawler.core.Crawler;
 import de.jeha.kame.crawler.core.types.CrawlResult;
 import de.jeha.kame.crawler.service.api.CrawlRequest;
 import de.jeha.kame.crawler.service.api.CrawlResponse;
+import de.jeha.kame.crawler.service.config.CrawlerConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -22,6 +23,12 @@ public class CrawlResource {
 
     private static final Logger LOG = LoggerFactory.getLogger(CrawlResult.class);
 
+    private final CrawlerConfiguration crawlerConfig;
+
+    public CrawlResource(CrawlerConfiguration crawlerConfig) {
+        this.crawlerConfig = crawlerConfig;
+    }
+
     @POST
     @Path("/crawl")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -31,7 +38,7 @@ public class CrawlResource {
         LOG.info("{}", request.getUrl());
         final String crawlId = UUID.randomUUID().toString();
 
-        Crawler crawler = new Crawler(request.getUrl());
+        Crawler crawler = new Crawler(request.getUrl(), crawlerConfig.getUserAgent());
         try {
             CrawlResult result = crawler.execute();
 

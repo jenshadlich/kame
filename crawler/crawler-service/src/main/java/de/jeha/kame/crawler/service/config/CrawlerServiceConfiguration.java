@@ -16,13 +16,25 @@ public class CrawlerServiceConfiguration extends Configuration {
     @NotNull
     private MongoDbFactory mongoDb = new MongoDbFactory();
 
+    @Valid
+    @NotNull
+    private CrawlerFactory crawler = new CrawlerFactory();
+
     @JsonCreator
-    public CrawlerServiceConfiguration(@JsonProperty("mongoDb") MongoDbFactory mongoDb) {
+    public CrawlerServiceConfiguration(@JsonProperty("mongoDb") MongoDbFactory mongoDb,
+                                       @JsonProperty("crawler") CrawlerFactory crawler) {
         this.mongoDb = mongoDb;
+        this.crawler = crawler;
     }
 
     @JsonProperty("mongoDb")
     public MongoDbFactory getMongoDb() {
         return this.mongoDb;
     }
+
+    @JsonProperty("crawler")
+    public CrawlerFactory getCrawler() {
+        return this.crawler;
+    }
+
 }

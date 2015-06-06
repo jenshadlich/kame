@@ -29,7 +29,7 @@ public class CrawlerService extends Application<CrawlerServiceConfiguration> {
 
     @Override
     public void run(CrawlerServiceConfiguration configuration, Environment environment) {
-        environment.jersey().register(new CrawlResource());
+        environment.jersey().register(new CrawlResource(configuration.getCrawler().build()));
 
         environment.healthChecks().register("mongoDb", new MongoDbHealthCheck(configuration.getMongoDb()));
 

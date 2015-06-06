@@ -24,14 +24,18 @@ public class Crawler {
 
     private static final Logger LOG = LoggerFactory.getLogger(Crawler.class);
 
-    // Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)
-    // TODO: setup external resource + add to user agent
-    private static final String USER_AGENT = "Mozilla/5.0 (compatible; Kamebot/0.1)";
+    private static final String DEFAULT_USER_AGENT = "Mozilla/5.0 (compatible; Kamebot/0.1)";
 
     private final String url;
+    private final String userAgent;
 
     public Crawler(String url) {
+        this(url, DEFAULT_USER_AGENT);
+    }
+
+    public Crawler(String url, String userAgent) {
         this.url = url;
+        this.userAgent = userAgent;
     }
 
     public CrawlResult execute() throws IOException {
@@ -39,7 +43,7 @@ public class Crawler {
 
         DefaultHttpClient httpClient = new DefaultHttpClient();
         HttpGet httpGet = new HttpGet(url);
-        httpGet.setHeader("User-Agent", USER_AGENT);
+        httpGet.setHeader("User-Agent", userAgent);
 
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();

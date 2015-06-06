@@ -20,3 +20,6 @@ logging:
 mongoDb:
   url: localhost:27017
   database: crawler-service
+
+crawler:
+  userAgent: Mozilla/5.0 (compatible; Kamebot/0.1)
