@@ -27,7 +27,7 @@ public class CrawlResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     @Timed
-    public Object crawl(CrawlRequest request) {
+    public CrawlResponse crawl(CrawlRequest request) {
         LOG.info("{}", request.getUrl());
         final String crawlId = UUID.randomUUID().toString();
 
