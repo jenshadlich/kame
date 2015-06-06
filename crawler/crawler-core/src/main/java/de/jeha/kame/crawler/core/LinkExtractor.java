@@ -11,9 +11,9 @@ import java.util.List;
 /**
  * @author jenshadlich@googlemail.com
  */
-public class ResultParser {
+public class LinkExtractor {
 
-    public List<String> parse(CrawlResult crawlResult) {
+    public List<String> get(CrawlResult crawlResult) {
         final String content = crawlResult.getContent();
         List<String> ahrefs = new ArrayList<>();
 

@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * @author jenshadlich@googlemail.com
  */
-public class AbstractResultParserTest {
+public class AbstractLinkExtractorTest {
 
     protected String getResourceAsString(String resource) throws IOException {
         return IOUtils.toString(this.getClass().getResourceAsStream(resource));

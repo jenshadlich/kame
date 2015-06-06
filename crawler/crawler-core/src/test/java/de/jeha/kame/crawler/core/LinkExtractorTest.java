@@ -11,10 +11,10 @@ import static org.junit.Assert.assertEquals;
 /**
  * @author jenshadlich@googlemail.com
  */
-public class ResultParserTest extends AbstractResultParserTest {
+public class LinkExtractorTest extends AbstractLinkExtractorTest {
 
     @Test
-    public void test() {
+    public void testCrawlResult() {
         CrawlResult result = buildCrawlResult("");
 
         assertEquals(200, result.getMetadata().getStatusCode());
@@ -24,7 +24,7 @@ public class ResultParserTest extends AbstractResultParserTest {
 
     @Test
     public void testSimple() throws IOException {
-        List<String> links = new ResultParser().parse(buildCrawlResultFromResource("/simple.html"));
+        List<String> links = new LinkExtractor().get(buildCrawlResultFromResource("/simple.html"));
 
         assertEquals(1, links.size());
         assertEquals("http://www.google.com", links.get(0));
