@@ -3,6 +3,9 @@ package de.jeha.kame.crawler.service.resources;
 
 import com.codahale.metrics.annotation.Timed;
 import de.jeha.kame.crawler.core.Crawler;
+import de.jeha.kame.crawler.core.LinkExtractor;
+import de.jeha.kame.crawler.core.robots.RobotsMetaContent;
+import de.jeha.kame.crawler.core.robots.RobotsMetaContentExtractor;
 import de.jeha.kame.crawler.core.types.CrawlResult;
 import de.jeha.kame.crawler.service.api.CrawlRequest;
 import de.jeha.kame.crawler.service.api.CrawlResponse;
@@ -16,6 +19,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.io.IOException;
+import java.util.List;
 import java.util.UUID;
 
 @Path("/")
@@ -24,6 +28,8 @@ public class CrawlResource {
     private static final Logger LOG = LoggerFactory.getLogger(CrawlResult.class);
 
     private final CrawlerConfiguration crawlerConfig;
+    private final LinkExtractor linkExtractor = new LinkExtractor();
+    private final RobotsMetaContentExtractor robotsMetaContentExtractor = new RobotsMetaContentExtractor();
 
     public CrawlResource(CrawlerConfiguration crawlerConfig) {
         this.crawlerConfig = crawlerConfig;
@@ -41,6 +47,13 @@ public class CrawlResource {
         Crawler crawler = new Crawler(request.getUrl(), crawlerConfig.getUserAgent());
         try {
             CrawlResult result = crawler.execute();
+
+            List<String> links = linkExtractor.get(result);
+            for (String link : links) {
+                LOG.debug("{}", link);
+            }
+            RobotsMetaContent robotsMetaContent = robotsMetaContentExtractor.get(result);
+            LOG.debug("{}", robotsMetaContent);
 
             return CrawlResponse.withSuccess(
                     crawlId,
