@@ -12,12 +12,12 @@ import static org.junit.Assert.assertTrue;
 /**
  * @author jenshadlich@googlemail.com
  */
-public class RobotsMetaExtractorTest {
+public class RobotsMetaContentExtractorTest {
 
     @Test
     public void testDefault() throws IOException {
         final String content = IOUtils.toString(this.getClass().getResourceAsStream("/simple.html"));
-        RobotsMetaContent meta = new RobotsMetaExtractor().get(new CrawlResult(null, content, null));
+        RobotsMetaContent meta = new RobotsMetaContentExtractor().get(new CrawlResult(null, content, null));
 
         assertTrue(meta.isIndex());
         assertTrue(meta.isFollow());
@@ -28,7 +28,7 @@ public class RobotsMetaExtractorTest {
     public void testNoIndexNoFollow() throws IOException {
         final String content =
                 IOUtils.toString(this.getClass().getResourceAsStream("/robots/meta_robots_noindex_nofollow.html"));
-        RobotsMetaContent meta = new RobotsMetaExtractor().get(new CrawlResult(null, content, null));
+        RobotsMetaContent meta = new RobotsMetaContentExtractor().get(new CrawlResult(null, content, null));
 
         assertFalse(meta.isIndex());
         assertFalse(meta.isFollow());

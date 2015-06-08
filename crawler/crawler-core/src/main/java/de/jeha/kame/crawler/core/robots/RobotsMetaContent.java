@@ -4,6 +4,7 @@ package de.jeha.kame.crawler.core.robots;
  * @author jenshadlich@googlemail.com
  */
 public class RobotsMetaContent {
+
     private final boolean index;
     private final boolean follow;
     private final boolean archive;

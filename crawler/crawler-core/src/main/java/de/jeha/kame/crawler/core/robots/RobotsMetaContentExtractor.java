@@ -9,7 +9,7 @@ import org.jsoup.select.Elements;
 /**
  * @author jenshadlich@googlemail.com
  */
-public class RobotsMetaExtractor {
+public class RobotsMetaContentExtractor {
 
     public RobotsMetaContent get(CrawlResult crawlResult) {
         final String content = crawlResult.getContent();
