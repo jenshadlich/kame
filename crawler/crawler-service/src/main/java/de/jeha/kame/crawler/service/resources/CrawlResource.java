@@ -19,6 +19,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.io.IOException;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -43,6 +45,7 @@ public class CrawlResource {
     public CrawlResponse crawl(CrawlRequest request) {
         LOG.info("{}", request.getUrl());
         final String crawlId = UUID.randomUUID().toString();
+        final String now = ZonedDateTime.now(ZoneOffset.UTC).toString();
 
         Crawler crawler = new Crawler(request.getUrl(), crawlerConfig.getUserAgent());
         try {
@@ -57,12 +60,13 @@ public class CrawlResource {
 
             return CrawlResponse.withSuccess(
                     crawlId,
+                    now,
                     result.getMetadata().getStatusCode()
             );
         } catch (IOException e) {
             LOG.warn("An I/O error occurred", e);
 
-            return CrawlResponse.withError(crawlId, e.getMessage());
+            return CrawlResponse.withError(crawlId, now, e.getMessage());
         }
     }
 

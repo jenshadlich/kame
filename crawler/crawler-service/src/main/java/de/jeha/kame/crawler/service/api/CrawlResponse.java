@@ -10,23 +10,31 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class CrawlResponse {
 
     private final String id;
+    private final String date;
     private int statusCode;
     private final Error error;
 
-    private CrawlResponse(String id, int statusCode) {
+    private CrawlResponse(String id, String date, int statusCode) {
         this.id = id;
+        this.date = date;
         this.statusCode = statusCode;
         this.error = null;
     }
 
-    private CrawlResponse(String id, Error error) {
+    private CrawlResponse(String id, String date, Error error) {
         this.id = id;
+        this.date = date;
         this.error = error;
     }
 
     @JsonProperty
     public String getId() {
         return id;
+    }
+
+    @JsonProperty
+    public String getDate() {
+        return date;
     }
 
     @JsonProperty
@@ -44,12 +52,12 @@ public class CrawlResponse {
         return error;
     }
 
-    public static CrawlResponse withSuccess(String id, int statusCode) {
-        return new CrawlResponse(id, statusCode);
+    public static CrawlResponse withSuccess(String id, String date, int statusCode) {
+        return new CrawlResponse(id, date, statusCode);
     }
 
-    public static CrawlResponse withError(String id, String errorMessage) {
-        return new CrawlResponse(id, new Error(errorMessage));
+    public static CrawlResponse withError(String id, String date, String errorMessage) {
+        return new CrawlResponse(id, date, new Error(errorMessage));
     }
 
     // -----------------------------------------------------------------------------------------------------------------
