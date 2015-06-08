@@ -8,7 +8,11 @@ import java.util.Map;
  */
 public class Headers {
 
+    public static final String CACHE_CONTROL = "Cache-Control";
     public static final String CONTENT_TYPE = "Content-Type";
+    public static final String CONTENT_LENGTH = "Content-Length";
+    public static final String PRAGMA = "Pragma";
+    public static final String SERVER = "Server";
     public static final String X_ROBOTS_TAG = "X-Robots-Tag";
 
     private final Map<String, String> headers = new HashMap<>();
@@ -28,4 +32,5 @@ public class Headers {
     public String getContentType() {
         return headers.get(CONTENT_TYPE);
     }
+
 }
