@@ -7,6 +7,10 @@ import java.util.Map;
  * @author jenshadlich@googlemail.com
  */
 public class Headers {
+
+    public static final String CONTENT_TYPE = "Content-Type";
+    public static final String X_ROBOTS_TAG = "X-Robots-Tag";
+
     private final Map<String, String> headers = new HashMap<>();
 
     public Headers(Map<String, String> headers) {
@@ -17,7 +21,11 @@ public class Headers {
         headers.put(key, value);
     }
 
+    public String get(String key) {
+        return headers.get(key);
+    }
+
     public String getContentType() {
-        return headers.get("Content-Type");
+        return headers.get(CONTENT_TYPE);
     }
 }
