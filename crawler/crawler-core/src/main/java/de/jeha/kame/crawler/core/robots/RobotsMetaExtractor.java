@@ -11,7 +11,7 @@ import org.jsoup.select.Elements;
  */
 public class RobotsMetaExtractor {
 
-    public RobotsMeta get(CrawlResult crawlResult) {
+    public RobotsMetaContent get(CrawlResult crawlResult) {
         final String content = crawlResult.getContent();
 
         boolean index = true;
@@ -36,7 +36,7 @@ public class RobotsMetaExtractor {
             }
         }
 
-        return new RobotsMeta(index, follow);
+        return new RobotsMetaContent(index, follow, true);
     }
 
 }

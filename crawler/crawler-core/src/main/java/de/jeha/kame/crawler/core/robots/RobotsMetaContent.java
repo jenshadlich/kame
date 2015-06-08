@@ -3,13 +3,15 @@ package de.jeha.kame.crawler.core.robots;
 /**
  * @author jenshadlich@googlemail.com
  */
-public class RobotsMeta {
+public class RobotsMetaContent {
     private final boolean index;
     private final boolean follow;
+    private final boolean archive;
 
-    public RobotsMeta(boolean index, boolean follow) {
+    public RobotsMetaContent(boolean index, boolean follow, boolean archive) {
         this.index = index;
         this.follow = follow;
+        this.archive = archive;
     }
 
     public boolean isIndex() {
@@ -18,6 +20,10 @@ public class RobotsMeta {
 
     public boolean isFollow() {
         return follow;
+    }
+
+    public boolean isArchive() {
+        return archive;
     }
 
 }

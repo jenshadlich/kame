@@ -17,20 +17,22 @@ public class RobotsMetaExtractorTest {
     @Test
     public void testDefault() throws IOException {
         final String content = IOUtils.toString(this.getClass().getResourceAsStream("/simple.html"));
-        RobotsMeta meta = new RobotsMetaExtractor().get(new CrawlResult(null, content, null));
+        RobotsMetaContent meta = new RobotsMetaExtractor().get(new CrawlResult(null, content, null));
 
         assertTrue(meta.isIndex());
         assertTrue(meta.isFollow());
+        assertTrue(meta.isArchive());
     }
 
     @Test
     public void testNoIndexNoFollow() throws IOException {
         final String content =
                 IOUtils.toString(this.getClass().getResourceAsStream("/robots/meta_robots_noindex_nofollow.html"));
-        RobotsMeta meta = new RobotsMetaExtractor().get(new CrawlResult(null, content, null));
+        RobotsMetaContent meta = new RobotsMetaExtractor().get(new CrawlResult(null, content, null));
 
         assertFalse(meta.isIndex());
         assertFalse(meta.isFollow());
+        assertTrue(meta.isArchive());
     }
 
 }
