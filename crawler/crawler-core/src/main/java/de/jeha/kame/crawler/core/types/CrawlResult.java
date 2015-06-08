@@ -29,7 +29,10 @@ public class CrawlResult {
         return metadata;
     }
 
+    // -----------------------------------------------------------------------------------------------------------------
+
     public static class Metadata {
+
         private final Headers headers;
         private final int statusCode;
         private final long timeTaken;
@@ -58,4 +61,5 @@ public class CrawlResult {
             return timeTaken;
         }
     }
+
 }
