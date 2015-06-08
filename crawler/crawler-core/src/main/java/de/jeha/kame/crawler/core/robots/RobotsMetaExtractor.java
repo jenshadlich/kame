@@ -16,6 +16,7 @@ public class RobotsMetaExtractor {
 
         boolean index = true;
         boolean follow = true;
+        boolean archive = true;
 
         if (content == null) {
             throw new IllegalStateException("content must not be null");
@@ -27,16 +28,12 @@ public class RobotsMetaExtractor {
         if (!elements.isEmpty()) {
             final String metaContent = elements.first().attr("content");
 
-            if (StringUtils.containsIgnoreCase(metaContent, "noindex")) {
-                index = false;
-            }
-
-            if (StringUtils.containsIgnoreCase(metaContent, "nofollow")) {
-                follow = false;
-            }
+            index = !StringUtils.containsIgnoreCase(metaContent, "noindex");
+            follow = !StringUtils.containsIgnoreCase(metaContent, "nofollow");
+            archive = !StringUtils.containsIgnoreCase(metaContent, "noarchive");
         }
 
-        return new RobotsMetaContent(index, follow, true);
+        return new RobotsMetaContent(index, follow, archive);
     }
 
 }
