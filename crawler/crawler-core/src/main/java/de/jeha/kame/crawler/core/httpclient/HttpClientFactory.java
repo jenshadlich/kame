@@ -1,4 +1,4 @@
-package de.jeha.kame.crawler.core;
+package de.jeha.kame.crawler.core.httpclient;
 
 import org.apache.http.config.RegistryBuilder;
 import org.apache.http.conn.HttpClientConnectionManager;
