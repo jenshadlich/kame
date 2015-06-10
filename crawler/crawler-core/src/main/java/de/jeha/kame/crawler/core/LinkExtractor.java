@@ -17,7 +17,7 @@ public class LinkExtractor {
 
         final List<String> links = new ArrayList<>();
 
-        if (crawlResult.hasContent()) {
+        if (!crawlResult.hasContent()) {
             throw new IllegalStateException("content must not be null");
         }
 

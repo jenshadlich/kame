@@ -26,7 +26,7 @@ public class CrawlResult {
     }
 
     public boolean hasContent() {
-        return content != null;
+        return content != null && !content.isEmpty();
     }
 
     public Metadata getMetadata() {
