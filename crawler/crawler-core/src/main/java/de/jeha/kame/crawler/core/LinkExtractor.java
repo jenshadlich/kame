@@ -14,33 +14,28 @@ import java.util.List;
 public class LinkExtractor {
 
     public List<String> get(CrawlResult crawlResult) {
-        final String content = crawlResult.getContent();
-        List<String> ahrefs = new ArrayList<>();
 
-        if (content == null) {
+        final List<String> links = new ArrayList<>();
+
+        if (crawlResult.hasContent()) {
             throw new IllegalStateException("content must not be null");
         }
 
-        Document doc = Jsoup.parse(content);
+        Document doc = Jsoup.parse(crawlResult.getContent());
+
         for (Element e : doc.select("a[href]")) {
-            //LOG.trace(e.toString());
+            final String href = e.attr("href");
 
-//            if ("_blank".equals(e.attr("target"))) {
-//                continue;
-//            }
-            if ("#".equals(e.attr("href"))) {
+            if ("#".equals(href)) {
                 continue;
             }
-            if (e.attr("href") != null && e.attr("href").startsWith("#")) {
+            if (href != null && href.startsWith("#")) {
                 continue;
             }
-            if (e.attr("href").startsWith("http://www.example.com")) { // TODO: exclude at upper level
-                continue;
-            }
-            ahrefs.add(e.attr("href"));
+
+            links.add(e.attr("href"));
         }
-        //LOG.debug("#hrefs = {}", ahrefs.size());
 
-        return ahrefs;
+        return links;
     }
 }
