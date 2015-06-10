@@ -8,7 +8,6 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.StatusLine;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,14 +40,13 @@ public class Crawler {
     public CrawlResult execute() throws IOException {
         LOG.info("Crawling: '{}'", url);
 
-        DefaultHttpClient httpClient = new DefaultHttpClient();
         HttpGet httpGet = new HttpGet(url);
         httpGet.setHeader("User-Agent", userAgent);
 
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
 
-        HttpResponse response = httpClient.execute(httpGet);
+        HttpResponse response = HttpClientFactory.getInstance().execute(httpGet);
 
         try {
             StatusLine statusLine = response.getStatusLine();
