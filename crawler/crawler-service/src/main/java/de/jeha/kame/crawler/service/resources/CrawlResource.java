@@ -43,7 +43,8 @@ public class CrawlResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Timed
     public CrawlResponse crawl(CrawlRequest request) {
-        LOG.info("{}", request.getUrl());
+        LOG.info("Crawl: '{}'", request.getUrl());
+
         final String crawlId = UUID.randomUUID().toString();
         final String now = ZonedDateTime.now(ZoneOffset.UTC).toString();
 
