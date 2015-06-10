@@ -13,13 +13,15 @@ import org.glassfish.jersey.server.ServerProperties;
  */
 public class CrawlerService extends Application<CrawlerServiceConfiguration> {
 
-    public static void main(String[] args) throws Exception {
+    private static final String APPLICATION_NAME = "crawler-service";
+
+    public static void main(String... args) throws Exception {
         new CrawlerService().run(args);
     }
 
     @Override
     public String getName() {
-        return "crawler-service";
+        return APPLICATION_NAME;
     }
 
     @Override
