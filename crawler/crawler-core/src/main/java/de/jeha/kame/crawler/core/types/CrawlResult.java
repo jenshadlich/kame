@@ -25,6 +25,10 @@ public class CrawlResult {
         return content;
     }
 
+    public boolean hasContent() {
+        return content != null;
+    }
+
     public Metadata getMetadata() {
         return metadata;
     }
