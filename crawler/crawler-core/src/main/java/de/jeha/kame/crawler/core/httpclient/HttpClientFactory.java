@@ -8,7 +8,6 @@ import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.BasicHttpClientConnectionManager;
-import org.apache.http.impl.conn.SystemDefaultDnsResolver;
 
 /**
  * @author jenshadlich@googlemail.com
@@ -26,7 +25,7 @@ public class HttpClientFactory {
                             .build(),
                     null,
                     null,
-                    new SystemDefaultDnsResolver()
+                    new DefaultDnsResolver()
             );
             INSTANCE = HttpClients.custom().setConnectionManager(connectionManager).build();
         }
