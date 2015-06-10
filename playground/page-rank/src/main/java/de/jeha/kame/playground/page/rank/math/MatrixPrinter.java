@@ -1,4 +1,4 @@
-package de.jeha.kame.playground.page_rank.math;
+package de.jeha.kame.playground.page.rank.math;
 
 import java.io.PrintStream;
 

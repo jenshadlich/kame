@@ -1,6 +1,6 @@
-package de.jeha.kame.playground.page_rank.tools;
+package de.jeha.kame.playground.page.rank.tools;
 
-import de.jeha.kame.playground.page_rank.math.MatrixReader;
+import de.jeha.kame.playground.page.rank.math.MatrixReader;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

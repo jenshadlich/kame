@@ -1,6 +1,6 @@
-package de.jeha.kame.playground.page_rank.tools;
+package de.jeha.kame.playground.page.rank.tools;
 
-import de.jeha.kame.playground.page_rank.math.MatrixPrinter;
+import de.jeha.kame.playground.page.rank.math.MatrixPrinter;
 
 import java.util.Random;
 

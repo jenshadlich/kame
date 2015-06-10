@@ -1,8 +1,8 @@
-package de.jeha.kame.playground.page_rank;
+package de.jeha.kame.playground.page.rank;
 
-import de.jeha.kame.playground.page_rank.math.Matrix;
-import de.jeha.kame.playground.page_rank.math.MatrixPrinter;
-import de.jeha.kame.playground.page_rank.math.MatrixReader;
+import de.jeha.kame.playground.page.rank.math.Matrix;
+import de.jeha.kame.playground.page.rank.math.MatrixPrinter;
+import de.jeha.kame.playground.page.rank.math.MatrixReader;
 import org.apache.commons.math3.util.Precision;
 
 import java.io.IOException;

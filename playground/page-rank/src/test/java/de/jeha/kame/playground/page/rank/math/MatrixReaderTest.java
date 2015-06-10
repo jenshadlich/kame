@@ -1,4 +1,4 @@
-package de.jeha.kame.playground.page_rank.math;
+package de.jeha.kame.playground.page.rank.math;
 
 import org.apache.commons.io.IOUtils;
 import org.junit.Assert;
