@@ -29,6 +29,10 @@ public class CrawlResult {
         return content != null && !content.isEmpty();
     }
 
+    public String getContentType() {
+        return getMetadata().getHeaders().getContentType();
+    }
+
     public Metadata getMetadata() {
         return metadata;
     }
