@@ -1,5 +1,6 @@
 package de.jeha.kame.crawler.service.ds;
 
+import com.codahale.metrics.health.HealthCheck;
 import de.jeha.kame.crawler.core.types.CrawlResult;
 import de.jeha.kame.crawler.service.ds.util.FileNameUtils;
 import org.apache.commons.io.FileUtils;
@@ -42,6 +43,14 @@ public class FileDocumentStore implements DocumentStore {
                 LOG.debug("file '{}' written", filename);
             }
         }
+    }
+
+    @Override
+    public HealthCheck.Result checkHealth() {
+        File root = new File(path);
+        return root.exists()
+                ? HealthCheck.Result.healthy()
+                : HealthCheck.Result.unhealthy("root path does not exist");
     }
 
 }

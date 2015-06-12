@@ -1,5 +1,6 @@
 package de.jeha.kame.crawler.service.ds;
 
+import com.codahale.metrics.health.HealthCheck;
 import de.jeha.kame.crawler.core.types.CrawlResult;
 
 import java.io.IOException;
@@ -19,5 +20,10 @@ public interface DocumentStore {
      * @throws IOException
      */
     void save(String crawlId, ZonedDateTime timestamp, CrawlResult result) throws IOException;
+
+    /**
+     * @return health check result
+     */
+    HealthCheck.Result checkHealth();
 
 }
