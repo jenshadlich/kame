@@ -11,7 +11,7 @@ public class CrawlResponse {
 
     private final String id;
     private final String date;
-    private int statusCode;
+    private final Integer statusCode;
     private final Error error;
 
     private CrawlResponse(String id, String date, int statusCode) {
@@ -25,6 +25,7 @@ public class CrawlResponse {
         this.id = id;
         this.date = date;
         this.error = error;
+        this.statusCode = null;
     }
 
     @JsonProperty
@@ -38,11 +39,11 @@ public class CrawlResponse {
     }
 
     @JsonProperty
-    public int getStatusCode() {
+    public Integer getStatusCode() {
         return statusCode;
     }
 
-    @JsonProperty()
+    @JsonProperty
     public Boolean hasError() {
         return error == null ? null : Boolean.TRUE;
     }
@@ -70,5 +71,9 @@ public class CrawlResponse {
             this.errorMessage = errorMessage;
         }
 
+        @JsonProperty
+        public String getErrorMessage() {
+            return errorMessage;
+        }
     }
 }
