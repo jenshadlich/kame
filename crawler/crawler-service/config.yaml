@@ -23,3 +23,7 @@ mongoDb:
 
 crawler:
   userAgent: Mozilla/5.0 (compatible; Kamebot/0.1)
+
+documentStore:
+  type: file
+  path: ./documents
