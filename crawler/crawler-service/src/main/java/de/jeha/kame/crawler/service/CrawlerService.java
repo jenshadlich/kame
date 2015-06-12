@@ -1,6 +1,7 @@
 package de.jeha.kame.crawler.service;
 
 import de.jeha.kame.crawler.service.config.CrawlerServiceConfiguration;
+import de.jeha.kame.crawler.service.health.DocumentStoreHealthCheck;
 import de.jeha.kame.crawler.service.health.MongoDbHealthCheck;
 import de.jeha.kame.crawler.service.resources.CrawlResource;
 import io.dropwizard.Application;
@@ -37,6 +38,7 @@ public class CrawlerService extends Application<CrawlerServiceConfiguration> {
                         configuration.getDocumentStore().build()));
 
         environment.healthChecks().register("mongoDb", new MongoDbHealthCheck(configuration.getMongoDb()));
+        environment.healthChecks().register("documentStore", new DocumentStoreHealthCheck(configuration.getDocumentStore().build()));
 
         environment.jersey().disable(ServerProperties.WADL_FEATURE_DISABLE);
     }
