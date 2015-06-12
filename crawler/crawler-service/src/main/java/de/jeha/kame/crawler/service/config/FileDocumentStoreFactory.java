@@ -14,9 +14,14 @@ public class FileDocumentStoreFactory implements DocumentStoreFactory {
     @JsonProperty
     private String path;
 
+    private FileDocumentStore fileDocumentStore;
+
     @Override
     public DocumentStore build() {
-        return new FileDocumentStore(path);
+        if (fileDocumentStore == null) {
+            fileDocumentStore = new FileDocumentStore(path);
+        }
+        return fileDocumentStore;
     }
 
 }
