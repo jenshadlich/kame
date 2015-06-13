@@ -48,6 +48,11 @@
             <artifactId>mongo-java-driver</artifactId>
             <version>${mongodb-driver.version}</version>
         </dependency>
+        <dependency>
+            <groupId>commons-validator</groupId>
+            <artifactId>commons-validator</artifactId>
+            <version>1.4.1</version>
+        </dependency>
         <!-- test dependencies -->
         <dependency>
             <groupId>junit</groupId>

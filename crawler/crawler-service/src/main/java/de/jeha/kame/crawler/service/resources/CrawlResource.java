@@ -10,6 +10,7 @@ import de.jeha.kame.crawler.core.types.CrawlResult;
 import de.jeha.kame.crawler.service.api.CrawlRequest;
 import de.jeha.kame.crawler.service.api.CrawlResponse;
 import de.jeha.kame.crawler.service.ds.DocumentStore;
+import org.apache.commons.validator.routines.UrlValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,10 +29,12 @@ import java.util.UUID;
 public class CrawlResource {
 
     private static final Logger LOG = LoggerFactory.getLogger(CrawlResult.class);
+    private static final String[] DEFAULT_SCHEMES = new String[]{"http", "https"};
 
     private final String userAgent;
     private final DocumentStore documentStore;
 
+    UrlValidator urlValidator = new UrlValidator(DEFAULT_SCHEMES);
     private final LinkExtractor linkExtractor = new LinkExtractor();
     private final RobotsMetaContentExtractor robotsMetaContentExtractor = new RobotsMetaContentExtractor();
 
@@ -50,6 +53,10 @@ public class CrawlResource {
 
         final String crawlId = UUID.randomUUID().toString();
         final ZonedDateTime now = ZonedDateTime.now(ZoneOffset.UTC);
+
+        if (!urlValidator.isValid(request.getUrl())) {
+            return CrawlResponse.withError(crawlId, now.toString(), "invalid url");
+        }
 
         Crawler crawler = new Crawler(request.getUrl(), userAgent);
         try {
