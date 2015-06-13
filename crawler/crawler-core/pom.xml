@@ -31,7 +31,7 @@
         <httpclient.version>4.3.6</httpclient.version>
         <jsoup.version>1.8.2</jsoup.version>
         <!-- plugin versions -->
-        <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
+        <maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
     </properties>
 
     <dependencies>
