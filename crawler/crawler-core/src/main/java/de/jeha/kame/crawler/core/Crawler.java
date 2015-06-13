@@ -29,15 +29,30 @@ public class Crawler {
     private final String url;
     private final String userAgent;
 
+    /**
+     * A crawler with default user agent '{@value de.jeha.kame.crawler.core.Crawler#DEFAULT_USER_AGENT}'.
+     *
+     * @param url url to crawl
+     */
     public Crawler(String url) {
         this(url, DEFAULT_USER_AGENT);
     }
 
+    /**
+     * @param url       url to crawl
+     * @param userAgent custom user agent string
+     */
     public Crawler(String url, String userAgent) {
         this.url = url;
         this.userAgent = userAgent;
     }
 
+    /**
+     * Crawl the url.
+     *
+     * @return crawl result
+     * @throws IOException
+     */
     public CrawlResult execute() throws IOException {
         LOG.info("Crawling: '{}'", url);
 
