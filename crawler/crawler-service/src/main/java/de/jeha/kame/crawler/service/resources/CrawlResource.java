@@ -34,7 +34,7 @@ public class CrawlResource {
     private final String userAgent;
     private final DocumentStore documentStore;
 
-    UrlValidator urlValidator = new UrlValidator(DEFAULT_SCHEMES);
+    private final UrlValidator urlValidator = new UrlValidator(DEFAULT_SCHEMES);
     private final LinkExtractor linkExtractor = new LinkExtractor();
     private final RobotsMetaContentExtractor robotsMetaContentExtractor = new RobotsMetaContentExtractor();
 
