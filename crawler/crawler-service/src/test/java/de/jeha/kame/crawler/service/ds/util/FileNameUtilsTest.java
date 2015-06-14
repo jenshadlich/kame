@@ -1,6 +1,5 @@
-package de.jeha.kame.crawler.server.ds.util;
+package de.jeha.kame.crawler.service.ds.util;
 
-import de.jeha.kame.crawler.service.ds.util.FileNameUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
