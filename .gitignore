@@ -21,3 +21,4 @@ crawler/crawler-service/crawler-service.iml
 crawler/crawler-service/target
 crawler/crawler-service/documents
 crawler/crawler-scheduler/target
+crawler/crawler-scheduler/crawler-scheduler.iml
