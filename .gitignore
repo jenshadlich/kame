@@ -20,3 +20,4 @@ crawler/crawler-cli/target
 crawler/crawler-service/crawler-service.iml
 crawler/crawler-service/target
 crawler/crawler-service/documents
+crawler/crawler-scheduler/target
