@@ -7,6 +7,7 @@ public enum StatusCode {
 
     // 2xx
     SC_200(200, "OK"),
+    SC_201(201, "Accepted"),
     // 3xx
     SC_301(301, "Moved Permanently"),
     SC_302(302, "Found"),
@@ -37,5 +38,25 @@ public enum StatusCode {
 
     public String getPhrase() {
         return phrase;
+    }
+
+    public boolean is2XX() {
+        return isCodeInClass(200);
+    }
+
+    public boolean is3XX() {
+        return isCodeInClass(300);
+    }
+
+    public boolean is4XX() {
+        return isCodeInClass(400);
+    }
+
+    public boolean is5XX() {
+        return isCodeInClass(500);
+    }
+
+    private boolean isCodeInClass(int lowerBound) {
+        return code >= lowerBound && code <= lowerBound + 99;
     }
 }
