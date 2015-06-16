@@ -1,6 +1,6 @@
 package de.jeha.kame.crawler.core.robots;
 
-import de.jeha.kame.crawler.core.robots.utils.MatchUtils;
+import de.jeha.kame.crawler.core.robots.util.MatchUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Arrays;
