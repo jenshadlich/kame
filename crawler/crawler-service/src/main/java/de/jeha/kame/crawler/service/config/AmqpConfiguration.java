@@ -9,9 +9,12 @@ public class AmqpConfiguration {
 
     private final int port;
 
-    public AmqpConfiguration(String host, int port) {
+    private final int connectionTimeout;
+
+    public AmqpConfiguration(String host, int port, int connectionTimeout) {
         this.host = host;
         this.port = port;
+        this.connectionTimeout = connectionTimeout;
     }
 
     public String getHost() {
@@ -20,6 +23,10 @@ public class AmqpConfiguration {
 
     public int getPort() {
         return port;
+    }
+
+    public int getConnectionTimeout() {
+        return connectionTimeout;
     }
 
 }

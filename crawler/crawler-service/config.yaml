@@ -31,3 +31,4 @@ documentStore:
 amqp:
   host: localhost
   port: 5672
+  connectionTimeout: 1000

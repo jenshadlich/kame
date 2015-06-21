@@ -21,16 +21,19 @@ public class AmqpFactory {
     @JsonProperty
     private int port = ConnectionFactory.DEFAULT_AMQP_PORT;
 
+    @JsonProperty
+    private int connectionTimeout;
+
     private transient ConnectionFactory connectionFactory;
 
     public AmqpConfiguration build() {
-        return new AmqpConfiguration(host, port);
+        return new AmqpConfiguration(host, port, connectionTimeout);
     }
 
     public ConnectionFactory getConnectionFactory() {
         if (connectionFactory == null) {
             connectionFactory = new ConnectionFactory();
-            connectionFactory.setConnectionTimeout(1000);
+            connectionFactory.setConnectionTimeout(connectionTimeout);
             connectionFactory.setHost(host);
             connectionFactory.setPort(port);
         }
