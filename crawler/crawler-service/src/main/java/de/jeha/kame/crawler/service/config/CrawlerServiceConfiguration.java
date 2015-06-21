@@ -24,13 +24,19 @@ public class CrawlerServiceConfiguration extends Configuration {
     @Valid
     private DocumentStoreFactory documentStore;
 
+    @NotNull
+    @Valid
+    private AmqpFactory amqp;
+
     @JsonCreator
     public CrawlerServiceConfiguration(@JsonProperty("mongoDb") MongoDbFactory mongoDb,
                                        @JsonProperty("crawler") CrawlerFactory crawler,
-                                       @JsonProperty("documentStore") DocumentStoreFactory documentStoreFactory) {
+                                       @JsonProperty("documentStore") DocumentStoreFactory documentStoreFactory,
+                                       @JsonProperty("amqp") AmqpFactory amqp) {
         this.mongoDb = mongoDb;
         this.crawler = crawler;
         this.documentStore = documentStoreFactory;
+        this.amqp = amqp;
     }
 
     @JsonProperty("mongoDb")
@@ -46,6 +52,11 @@ public class CrawlerServiceConfiguration extends Configuration {
     @JsonProperty("documentStore")
     public DocumentStoreFactory getDocumentStore() {
         return documentStore;
+    }
+
+    @JsonProperty("amqp")
+    public AmqpFactory getAmqp() {
+        return amqp;
     }
 
 }

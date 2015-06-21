@@ -27,3 +27,7 @@ crawler:
 documentStore:
   type: file
   path: ./documents
+
+amqp:
+  host: localhost
+  port: 5672
