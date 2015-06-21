@@ -14,7 +14,7 @@ public class FileDocumentStoreFactory implements DocumentStoreFactory {
     @JsonProperty
     private String path;
 
-    private FileDocumentStore fileDocumentStore;
+    private transient FileDocumentStore fileDocumentStore;
 
     @Override
     public DocumentStore build() {

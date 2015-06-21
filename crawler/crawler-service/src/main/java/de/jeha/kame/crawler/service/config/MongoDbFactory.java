@@ -14,7 +14,7 @@ public class MongoDbFactory {
     @JsonProperty
     private String database;
 
-    private MongoClient mongoClient;
+    private transient MongoClient mongoClient;
 
     public String getUrl() {
         return url;
