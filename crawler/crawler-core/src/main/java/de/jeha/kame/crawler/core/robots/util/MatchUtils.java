@@ -1,4 +1,4 @@
-package de.jeha.kame.crawler.core.robots.utils;
+package de.jeha.kame.crawler.core.robots.util;
 
 import org.apache.commons.lang3.StringUtils;
 
