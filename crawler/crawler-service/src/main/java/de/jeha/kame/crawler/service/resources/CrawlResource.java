@@ -2,6 +2,10 @@ package de.jeha.kame.crawler.service.resources;
 
 
 import com.codahale.metrics.annotation.Timed;
+import com.rabbitmq.client.AMQP;
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.ConnectionFactory;
 import de.jeha.kame.crawler.core.Crawler;
 import de.jeha.kame.crawler.core.LinkExtractor;
 import de.jeha.kame.crawler.core.robots.RobotsMetaContent;
@@ -24,6 +28,7 @@ import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.TimeoutException;
 
 @Path("/")
 public class CrawlResource {
@@ -33,14 +38,16 @@ public class CrawlResource {
 
     private final String userAgent;
     private final DocumentStore documentStore;
+    private final ConnectionFactory connectionFactory;
 
     private final UrlValidator urlValidator = new UrlValidator(DEFAULT_SCHEMES);
     private final LinkExtractor linkExtractor = new LinkExtractor();
     private final RobotsMetaContentExtractor robotsMetaContentExtractor = new RobotsMetaContentExtractor();
 
-    public CrawlResource(String userAgent, DocumentStore documentStore) {
+    public CrawlResource(String userAgent, DocumentStore documentStore, ConnectionFactory connectionFactory) {
         this.userAgent = userAgent;
         this.documentStore = documentStore;
+        this.connectionFactory = connectionFactory;
     }
 
     @POST
@@ -64,6 +71,8 @@ public class CrawlResource {
 
             documentStore.save(crawlId, now, result);
 
+            publishCrawlResult(crawlId);
+
             List<String> links = linkExtractor.get(result);
             for (String link : links) {
                 LOG.debug("{}", link);
@@ -81,6 +90,36 @@ public class CrawlResource {
 
             return CrawlResponse.withError(crawlId, now.toString(), e.getMessage());
         }
+    }
+
+    private void publishCrawlResult(String crawlId) {
+
+        byte[] bytes = crawlId.getBytes(); // TODO: real message body
+
+        AMQP.BasicProperties.Builder target = new AMQP.BasicProperties.Builder();
+        target.messageId(UUID.randomUUID().toString());
+        target.correlationId(crawlId);
+
+        try {
+            Channel channel = null;
+            Connection connection = null;
+            try {
+                connection = connectionFactory.newConnection();
+                channel = connection.createChannel();
+                channel.queueDeclare("new_url", false, false, false, null);
+                channel.basicPublish("", "new_url", false, false, target.build(), bytes);
+            } finally {
+                if (channel != null) {
+                    channel.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            }
+        } catch (TimeoutException | IOException e) {
+            LOG.warn("Unable to publish crawl result", e);
+        }
+        LOG.debug("published crawl result");
     }
 
 }

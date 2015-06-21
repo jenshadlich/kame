@@ -35,7 +35,8 @@ public class CrawlerService extends Application<CrawlerServiceConfiguration> {
         environment.jersey().register(
                 new CrawlResource(
                         configuration.getCrawler().getUserAgent(),
-                        configuration.getDocumentStore().build()));
+                        configuration.getDocumentStore().build(),
+                        configuration.getAmqp().getConnectionFactory()));
 
         environment.healthChecks().register("mongoDb", new MongoDbHealthCheck(configuration.getMongoDb()));
         environment.healthChecks().register("documentStore", new DocumentStoreHealthCheck(configuration.getDocumentStore().build()));
