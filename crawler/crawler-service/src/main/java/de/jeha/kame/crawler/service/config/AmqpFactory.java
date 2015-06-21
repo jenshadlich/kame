@@ -29,7 +29,7 @@ public class AmqpFactory {
 
     public ConnectionFactory getConnectionFactory() {
         if (connectionFactory == null) {
-            ConnectionFactory connectionFactory = new ConnectionFactory();
+            connectionFactory = new ConnectionFactory();
             connectionFactory.setConnectionTimeout(1000);
             connectionFactory.setHost(host);
             connectionFactory.setPort(port);
