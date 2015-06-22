@@ -15,7 +15,7 @@ import java.util.Map;
 /**
  * Parser for robots.txt files. Currently limited to the original standard which means it does only support User-agent
  * and Disallow instructions and nonstandard Sitemap (no Allow, Crawl-Delay).
- *
+ * <p/>
  * See http://www.robotstxt.org/
  *
  * @author jenshadlich@googlemail.com
@@ -87,6 +87,7 @@ public class RobotsExclusionParser {
                     break;
             }
         }
+
         return new RobotsExclusion(disallowMap, sitemaps);
     }
 }
