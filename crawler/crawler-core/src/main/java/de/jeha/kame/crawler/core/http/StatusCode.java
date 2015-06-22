@@ -5,6 +5,8 @@ package de.jeha.kame.crawler.core.http;
  */
 public enum StatusCode {
 
+    // 1xx
+    SC_100(100, "Continue"),
     // 2xx
     SC_200(200, "OK"),
     SC_201(201, "Accepted"),
@@ -40,6 +42,10 @@ public enum StatusCode {
         return phrase;
     }
 
+    public boolean is1XX() {
+        return isCodeInClass(100);
+    }
+    
     public boolean is2XX() {
         return isCodeInClass(200);
     }
