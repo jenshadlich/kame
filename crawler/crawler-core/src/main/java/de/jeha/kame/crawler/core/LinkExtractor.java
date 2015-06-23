@@ -21,9 +21,9 @@ public class LinkExtractor {
             throw new IllegalStateException("content must not be null");
         }
 
-        Document doc = Jsoup.parse(crawlResult.getContent());
+        Document document = Jsoup.parse(crawlResult.getContent());
 
-        for (Element e : doc.select("a[href]")) {
+        for (Element e : document.select("a[href]")) {
             final String href = e.attr("href");
 
             if ("#".equals(href)) {
