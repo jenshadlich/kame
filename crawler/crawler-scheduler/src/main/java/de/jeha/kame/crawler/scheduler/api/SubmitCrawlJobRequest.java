@@ -1,5 +1,6 @@
 package de.jeha.kame.crawler.scheduler.api;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -8,7 +9,10 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  */
 public class SubmitCrawlJobRequest {
 
+    @JsonProperty
     private String name;
+
+    @JsonProperty
     private String seedUrl;
     //private List<String> allowedDomains;
 
@@ -18,14 +22,6 @@ public class SubmitCrawlJobRequest {
 
     public String getSeedUrl() {
         return seedUrl;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setSeedUrl(String seedUrl) {
-        this.seedUrl = seedUrl;
     }
 
     @Override
