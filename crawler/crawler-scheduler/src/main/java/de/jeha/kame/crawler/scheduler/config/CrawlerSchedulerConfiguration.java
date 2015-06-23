@@ -13,14 +13,23 @@ public class CrawlerSchedulerConfiguration extends Configuration {
 
     @Valid
     @NotNull
-    CrawlerServiceFactory crawlerService;
+    private CrawlerServiceFactory crawlerService;
 
-    public CrawlerSchedulerConfiguration(@JsonProperty("crawler-service") CrawlerServiceFactory crawlerService) {
+    @Valid
+    @NotNull
+    private SchedulerFactory scheduler;
+
+    public CrawlerSchedulerConfiguration(@JsonProperty("crawler-service") CrawlerServiceFactory crawlerService,
+                                         @JsonProperty("scheduler") SchedulerFactory scheduler) {
         this.crawlerService = crawlerService;
+        this.scheduler = scheduler;
     }
 
     public CrawlerServiceFactory getCrawlerService() {
         return crawlerService;
     }
 
+    public SchedulerFactory getScheduler() {
+        return scheduler;
+    }
 }
