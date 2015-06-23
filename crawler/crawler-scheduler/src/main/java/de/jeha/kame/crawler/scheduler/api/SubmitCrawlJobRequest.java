@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
+import java.util.List;
+
 /**
  * @author jenshadlich@googlemail.com
  */
@@ -14,7 +16,9 @@ public class SubmitCrawlJobRequest {
 
     @JsonProperty
     private String seedUrl;
-    //private List<String> allowedDomains;
+
+    @JsonProperty
+    private List<String> allowedDomains;
 
     public String getName() {
         return name;
@@ -22,6 +26,10 @@ public class SubmitCrawlJobRequest {
 
     public String getSeedUrl() {
         return seedUrl;
+    }
+
+    public List<String> getAllowedDomains() {
+        return allowedDomains;
     }
 
     @Override
