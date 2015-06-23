@@ -14,11 +14,11 @@ public class CrawlerServiceConfiguration extends Configuration {
 
     @Valid
     @NotNull
-    private MongoDbFactory mongoDb = new MongoDbFactory();
+    private MongoDbFactory mongoDb;
 
     @Valid
     @NotNull
-    private CrawlerFactory crawler = new CrawlerFactory();
+    private CrawlerFactory crawler;
 
     @NotNull
     @Valid
