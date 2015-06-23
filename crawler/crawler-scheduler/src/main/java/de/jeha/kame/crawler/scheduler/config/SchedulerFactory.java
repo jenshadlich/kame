@@ -3,7 +3,6 @@ package de.jeha.kame.crawler.scheduler.config;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.quartz.Scheduler;
-import org.quartz.SchedulerException;
 import org.quartz.impl.StdSchedulerFactory;
 
 import java.util.Properties;
@@ -51,7 +50,7 @@ public class SchedulerFactory {
         return new SchedulerConfiguration(instanceId, jobStore, threadPool, threadCount);
     }
 
-    public Scheduler buildScheduler() throws SchedulerException {
+    public Scheduler buildScheduler() throws Exception {
         if (scheduler == null) {
             Properties properties = new Properties();
             properties.setProperty("org.quartz.scheduler.instanceId", instanceId);
