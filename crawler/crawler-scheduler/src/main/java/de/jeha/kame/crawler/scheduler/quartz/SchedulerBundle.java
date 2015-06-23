@@ -18,7 +18,7 @@ public class SchedulerBundle implements ConfiguredBundle<CrawlerSchedulerConfigu
 
     @Override
     public void run(CrawlerSchedulerConfiguration configuration, Environment environment) throws Exception {
-        environment.lifecycle().manage(new ManagedScheduler());
+        environment.lifecycle().manage(new ManagedScheduler(configuration.getScheduler().buildScheduler()));
     }
-    
+
 }
