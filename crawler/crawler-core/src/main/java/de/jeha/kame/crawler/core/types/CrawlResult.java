@@ -1,5 +1,7 @@
 package de.jeha.kame.crawler.core.types;
 
+import de.jeha.kame.crawler.core.http.Headers;
+
 import java.util.Map;
 
 /**

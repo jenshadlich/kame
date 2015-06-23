@@ -3,7 +3,7 @@ package de.jeha.kame.crawler.core;
 import de.jeha.kame.crawler.core.types.CrawlResult;
 import de.jeha.kame.crawler.core.http.ContentType;
 import de.jeha.kame.crawler.core.http.StatusCode;
-import de.jeha.kame.crawler.core.types.Headers;
+import de.jeha.kame.crawler.core.http.Headers;
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
