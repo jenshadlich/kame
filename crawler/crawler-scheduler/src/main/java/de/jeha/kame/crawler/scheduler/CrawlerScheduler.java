@@ -3,6 +3,7 @@ package de.jeha.kame.crawler.scheduler;
 
 import de.jeha.kame.crawler.scheduler.config.CrawlerSchedulerConfiguration;
 import de.jeha.kame.crawler.scheduler.config.CrawlerServiceConfiguration;
+import de.jeha.kame.crawler.scheduler.quartz.SchedulerBundle;
 import de.jeha.kame.crawler.scheduler.resources.CrawlJobResource;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
@@ -30,7 +31,7 @@ public class CrawlerScheduler extends Application<CrawlerSchedulerConfiguration>
 
     @Override
     public void initialize(Bootstrap<CrawlerSchedulerConfiguration> bootstrap) {
-        // nothing to do yet
+        bootstrap.addBundle(new SchedulerBundle());
     }
 
     @Override
