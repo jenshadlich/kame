@@ -4,6 +4,7 @@ import com.codahale.metrics.health.HealthCheck;
 import de.jeha.kame.crawler.core.types.CrawlResult;
 import de.jeha.kame.crawler.service.ds.util.FileNameUtils;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,14 +36,33 @@ public class FileDocumentStore implements DocumentStore {
 
     @Override
     public void save(String crawlId, ZonedDateTime timestamp, CrawlResult result) throws IOException {
-        final String filename = String.format("%s-%d-%s.gz", crawlId, timestamp.toEpochSecond(), FileNameUtils.stripToFilename(result.getUrl()));
+        final String filenamePrefix = String.format(
+                "%s-%d-%s",
+                crawlId,
+                timestamp.toEpochSecond(),
+                FileNameUtils.stripToFilename(result.getUrl())
+        );
 
-        try (FileOutputStream output = new FileOutputStream(path + "/" + filename)) {
+        saveDocument(filenamePrefix, result);
+        saveMetaRecord(filenamePrefix, result);
+    }
+
+    private void saveDocument(String filenamePrefix, CrawlResult result) throws IOException {
+        final String documentFilename = path + "/" + filenamePrefix + ".gz";
+        try (FileOutputStream output = new FileOutputStream(documentFilename)) {
             try (Writer writer = new OutputStreamWriter(new GZIPOutputStream(output), "UTF-8")) {
                 writer.write(result.getContent());
-                LOG.debug("file '{}' written", filename);
+                LOG.debug("file '{}' written", documentFilename);
             }
         }
+    }
+
+    private void saveMetaRecord(String filenamePrefix, CrawlResult result) throws IOException {
+        final String metaFilename = path + "/" + filenamePrefix + ".meta.json";
+        final String metaRecord = String.format("{\n  url: %s\n}\n", StringEscapeUtils.escapeJson(result.getUrl()));
+
+        FileUtils.writeStringToFile(new File(metaFilename), metaRecord);
+        LOG.debug("file '{}' written", metaFilename);
     }
 
     @Override
