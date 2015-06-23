@@ -33,7 +33,7 @@ import java.util.concurrent.TimeoutException;
 @Path("/")
 public class CrawlResource {
 
-    private static final Logger LOG = LoggerFactory.getLogger(CrawlResult.class);
+    private static final Logger LOG = LoggerFactory.getLogger(CrawlResource.class);
     private static final String[] DEFAULT_SCHEMES = new String[]{"http", "https"};
 
     private final String userAgent;
