@@ -8,6 +8,9 @@ server:
       maxResponseHeaderSize: 8KiB
       acceptorThreads: 2
       selectorThreads: 2
+  adminConnectors:
+    - type: http
+      port: 9081
   gzip:
     enabled: true
     bufferSize: 32KiB
