@@ -15,6 +15,10 @@ public class SchedulerFactory {
 
     @NotEmpty
     @JsonProperty
+    private String instanceId;
+
+    @NotEmpty
+    @JsonProperty
     private String jobStore;
 
     @NotEmpty
@@ -26,6 +30,10 @@ public class SchedulerFactory {
     private String threadCount;
 
     private transient Scheduler scheduler;
+
+    public String getInstanceId() {
+        return instanceId;
+    }
 
     public String getJobStore() {
         return jobStore;
@@ -40,12 +48,13 @@ public class SchedulerFactory {
     }
 
     public SchedulerConfiguration build() {
-        return new SchedulerConfiguration(jobStore, threadPool, threadCount);
+        return new SchedulerConfiguration(instanceId, jobStore, threadPool, threadCount);
     }
 
     public Scheduler buildScheduler() throws SchedulerException {
         if (scheduler == null) {
             Properties properties = new Properties();
+            properties.setProperty("org.quartz.scheduler.instanceId", instanceId);
             properties.setProperty("org.quartz.jobStore.class", jobStore);
             properties.setProperty("org.quartz.threadPool.class", threadPool);
             properties.setProperty("org.quartz.threadPool.threadCount", threadCount);

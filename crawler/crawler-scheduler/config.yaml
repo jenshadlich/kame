@@ -24,6 +24,7 @@ crawler-service:
   url: http://localhost:8080/crawl
 
 scheduler:
+  instanceId: default
   jobStore: org.quartz.simpl.RAMJobStore
   threadPool: org.quartz.simpl.SimpleThreadPool
   threadCount: 4

@@ -5,14 +5,20 @@ package de.jeha.kame.crawler.scheduler.config;
  */
 public class SchedulerConfiguration {
 
+    private final String instanceId;
     private final String jobStore;
     private final String threadPool;
     private final String threadCount;
 
-    public SchedulerConfiguration(String jobStore, String threadPool, String threadCount) {
+    public SchedulerConfiguration(String instanceId, String jobStore, String threadPool, String threadCount) {
+        this.instanceId = instanceId;
         this.jobStore = jobStore;
         this.threadPool = threadPool;
         this.threadCount = threadCount;
+    }
+
+    public String getInstanceId() {
+        return instanceId;
     }
 
     public String getJobStore() {
