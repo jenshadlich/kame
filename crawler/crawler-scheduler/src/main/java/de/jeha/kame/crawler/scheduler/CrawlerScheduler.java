@@ -3,7 +3,7 @@ package de.jeha.kame.crawler.scheduler;
 
 import de.jeha.kame.crawler.scheduler.config.CrawlerSchedulerConfiguration;
 import de.jeha.kame.crawler.scheduler.config.CrawlerServiceConfiguration;
-import de.jeha.kame.crawler.scheduler.resources.SubmitCrawlJobResource;
+import de.jeha.kame.crawler.scheduler.resources.CrawlJobResource;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
@@ -38,7 +38,7 @@ public class CrawlerScheduler extends Application<CrawlerSchedulerConfiguration>
         CrawlerServiceConfiguration crawlerServiceConfiguration = configuration.getCrawlerService().build();
         LOG.info("crawler-service.endpointUrl: {}", crawlerServiceConfiguration.getEndpointUrl());
 
-        environment.jersey().register(new SubmitCrawlJobResource());
+        environment.jersey().register(new CrawlJobResource());
 
         environment.jersey().disable(ServerProperties.WADL_FEATURE_DISABLE);
     }

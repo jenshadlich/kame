@@ -15,9 +15,9 @@ import javax.ws.rs.core.MediaType;
 import java.util.UUID;
 
 @Path("/")
-public class SubmitCrawlJobResource {
+public class CrawlJobResource {
 
-    private static final Logger LOG = LoggerFactory.getLogger(SubmitCrawlJobResource.class);
+    private static final Logger LOG = LoggerFactory.getLogger(CrawlJobResource.class);
 
     @POST
     @Path("/submitCrawlJob")
@@ -26,8 +26,9 @@ public class SubmitCrawlJobResource {
     @Timed
     public SubmitCrawlJobResponse submitCrawlJob(SubmitCrawlJobRequest request) {
         LOG.info("{}", request);
+        final String jobId = UUID.randomUUID().toString();
 
-        return new SubmitCrawlJobResponse(UUID.randomUUID().toString());
+        return new SubmitCrawlJobResponse(jobId);
     }
 
 }
