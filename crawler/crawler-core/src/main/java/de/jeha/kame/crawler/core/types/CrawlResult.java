@@ -4,6 +4,7 @@ import java.util.Map;
 
 /**
  * @author jenshadlich@googlemail.com
+ * @todo replace by Page
  */
 public class CrawlResult {
 

@@ -51,6 +51,7 @@ public class Crawler {
      * Crawl the url.
      *
      * @return crawl result
+     * @todo replace return type with Page
      * @throws IOException
      */
     public CrawlResult execute() throws IOException {
