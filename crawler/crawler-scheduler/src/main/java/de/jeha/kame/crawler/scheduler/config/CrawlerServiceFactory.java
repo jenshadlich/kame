@@ -10,10 +10,10 @@ public class CrawlerServiceFactory {
 
     @NotEmpty
     @JsonProperty
-    private String endpointUrl;
+    private String url;
 
     public CrawlerServiceConfiguration build() {
-        return new CrawlerServiceConfiguration(endpointUrl);
+        return new CrawlerServiceConfiguration(url);
     }
 
 }

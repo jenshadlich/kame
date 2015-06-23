@@ -36,7 +36,7 @@ public class CrawlerScheduler extends Application<CrawlerSchedulerConfiguration>
     @Override
     public void run(CrawlerSchedulerConfiguration configuration, Environment environment) {
         CrawlerServiceConfiguration crawlerServiceConfiguration = configuration.getCrawlerService().build();
-        LOG.info("crawler-service.endpointUrl: {}", crawlerServiceConfiguration.getEndpointUrl());
+        LOG.info("crawler-service.url: {}", crawlerServiceConfiguration.getUrl());
 
         environment.jersey().register(new CrawlJobResource());
 

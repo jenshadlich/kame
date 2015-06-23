@@ -21,4 +21,4 @@ logging:
     "de.jeha.kame": DEBUG
 
 crawler-service:
-  endpointUrl: http://localhost:8080/crawl
+  url: http://localhost:8080/crawl

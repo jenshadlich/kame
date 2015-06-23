@@ -5,14 +5,14 @@ package de.jeha.kame.crawler.scheduler.config;
  */
 public class CrawlerServiceConfiguration {
 
-    private final String endpointUrl;
+    private final String url;
 
-    public CrawlerServiceConfiguration(String endpointUrl) {
-        this.endpointUrl = endpointUrl;
+    public CrawlerServiceConfiguration(String url) {
+        this.url = url;
     }
 
-    public String getEndpointUrl() {
-        return endpointUrl;
+    public String getUrl() {
+        return url;
     }
 
 }

@@ -119,6 +119,7 @@ public class CrawlResource {
         } catch (TimeoutException | IOException e) {
             LOG.warn("Unable to publish crawl result", e);
         }
+
         LOG.debug("published crawl result");
     }
 
