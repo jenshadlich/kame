@@ -33,6 +33,11 @@ public class Headers {
         headers.put(key, value);
     }
 
+    /**
+     * @param key
+     * @return
+     * @todo Replace String parameter with enum
+     */
     public String get(String key) {
         return headers.get(key);
     }
