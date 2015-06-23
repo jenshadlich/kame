@@ -3,7 +3,7 @@ server:
   maxThreads: 32
   applicationConnectors:
     - type: http
-      port: 8080
+      port: 9080
       maxRequestHeaderSize: 8KiB
       maxResponseHeaderSize: 8KiB
       acceptorThreads: 2
@@ -16,3 +16,6 @@ logging:
   level: INFO
   loggers:
     "de.jeha.kame": DEBUG
+
+crawler-service:
+  endpointUrl: http://localhost:8080/crawl
