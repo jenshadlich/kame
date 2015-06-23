@@ -96,9 +96,9 @@ public class CrawlResource {
 
         byte[] bytes = crawlId.getBytes(); // TODO: real message body
 
-        AMQP.BasicProperties.Builder target = new AMQP.BasicProperties.Builder();
-        target.messageId(UUID.randomUUID().toString());
-        target.correlationId(crawlId);
+        AMQP.BasicProperties.Builder message = new AMQP.BasicProperties.Builder();
+        message.messageId(UUID.randomUUID().toString());
+        message.correlationId(crawlId);
 
         try {
             Channel channel = null;
@@ -107,7 +107,7 @@ public class CrawlResource {
                 connection = connectionFactory.newConnection();
                 channel = connection.createChannel();
                 channel.queueDeclare("new_url", false, false, false, null);
-                channel.basicPublish("", "new_url", false, false, target.build(), bytes);
+                channel.basicPublish("", "new_url", false, false, message.build(), bytes);
             } finally {
                 if (channel != null) {
                     channel.close();
