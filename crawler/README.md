@@ -2,10 +2,10 @@ kame crawler
 ============
 
 Next TODOs:
-* [ ] create crawler pom
+* [ ] create crawler pom to manage all dependencies
 * [x] setup crawler service with dropwizard
 * [ ] implement correct handling of robots.txt (in progress)
-* [ ] create scheduler (service + ui)
+* [ ] create scheduler (service + ui) (in progress)
 
 Main components:
 * domain name translation + cache
