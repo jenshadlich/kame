@@ -51,8 +51,8 @@ public class Crawler {
      * Crawl the url.
      *
      * @return crawl result
-     * @todo replace return type with Page
      * @throws IOException
+     * @todo replace return type with Page
      */
     public CrawlResult execute() throws IOException {
         LOG.info("Crawling: '{}'", url);
@@ -79,6 +79,8 @@ public class Crawler {
             for (Header header : response.getAllHeaders()) {
                 headers.put(header.getName(), header.getValue());
             }
+
+            //Page.Builder.New().withUrl(url).withContent(content).build();
 
             stopWatch.stop();
 
