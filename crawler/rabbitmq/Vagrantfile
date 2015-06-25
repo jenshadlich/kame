@@ -7,7 +7,9 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-
+    
+    config.vm.hostname = "rabbitmq"
+    
     config.vm.box = "ubuntu/trusty64"
 
     config.vm.network :forwarded_port, guest: 4369,  host: 4369,  auto_correct: true # epmd
@@ -18,7 +20,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     config.vm.provider 'virtualbox' do |v|
         v.customize ['modifyvm', :id, '--name', 'ubuntu1404-rabbitmq']
-        v.customize ['modifyvm', :id, '--cpus', '1']
+        v.customize ['modifyvm', :id, '--cpus', '2']
         v.customize ['modifyvm', :id, '--memory', 512]
     end
     
