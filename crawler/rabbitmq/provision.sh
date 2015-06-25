@@ -7,6 +7,7 @@ if ! `apt-key list | grep -q "RabbitMQ Release Signing Key <info@rabbitmq.com>"`
     apt-key add rabbitmq-signing-key-public.asc
 fi
 
+# install RabbitMQ server
 apt-get update > /dev/null
 apt-get -q -y install rabbitmq-server
 
