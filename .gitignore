@@ -22,3 +22,4 @@ crawler/crawler-service/target
 crawler/crawler-service/documents
 crawler/crawler-scheduler/target
 crawler/crawler-scheduler/crawler-scheduler.iml
+crawler/rabbitmq/.vagrant
