@@ -19,7 +19,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.network :private_network, ip: "192.168.42.10"
 
     config.vm.provider 'virtualbox' do |v|
-        v.customize ['modifyvm', :id, '--name', 'ubuntu1404-rabbitmq']
+        v.customize ['modifyvm', :id, '--name', 'trusty64-rabbitmq']
         v.customize ['modifyvm', :id, '--cpus', '2']
         v.customize ['modifyvm', :id, '--memory', 512]
     end
