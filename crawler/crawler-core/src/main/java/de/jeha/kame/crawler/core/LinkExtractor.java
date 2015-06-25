@@ -15,13 +15,17 @@ public class LinkExtractor {
 
     public List<String> get(CrawlResult crawlResult) {
 
-        final List<String> links = new ArrayList<>();
-
         if (!crawlResult.hasContent()) {
-            throw new IllegalStateException("content must not be null");
+            throw new IllegalArgumentException("content must not be null");
         }
 
         Document document = Jsoup.parse(crawlResult.getContent());
+
+        return get(document);
+    }
+
+    public List<String> get(Document document) {
+        final List<String> links = new ArrayList<>();
 
         for (Element e : document.select("a[href]")) {
             final String href = e.attr("href");
@@ -38,4 +42,5 @@ public class LinkExtractor {
 
         return links;
     }
+
 }
