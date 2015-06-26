@@ -29,4 +29,4 @@ echo "mongodb-org-shell hold" | sudo dpkg --set-selections
 echo "mongodb-org-mongos hold" | sudo dpkg --set-selections
 echo "mongodb-org-tools hold" | sudo dpkg --set-selections
 
-cat /var/log/mongodb/mongod.log
+tail -n 1 /var/log/mongodb/mongod.log
