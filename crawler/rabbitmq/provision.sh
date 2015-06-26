@@ -18,3 +18,6 @@ service rabbitmq-server start
 
 # show RabbitMQ status
 service rabbitmq-server status
+
+echo
+echo "Done."
