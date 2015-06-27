@@ -26,7 +26,7 @@ public class Hash {
     private final String value;
 
     public Hash(String input) {
-        byte[] digest = MESSAGE_DIGEST.digest(input.getBytes(Charset.forName("UTF-8")));
+        byte[] digest = MESSAGE_DIGEST.digest((input == null ? "" : input).getBytes(Charset.forName("UTF-8")));
         this.value = Hex.encodeHexString(digest);
     }
 
