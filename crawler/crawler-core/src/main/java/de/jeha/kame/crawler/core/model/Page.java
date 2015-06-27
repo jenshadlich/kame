@@ -72,7 +72,7 @@ public class Page {
 
         private String url;
         private String content;
-        private Headers headers;
+        private Headers headers = new Headers();
 
         public Builder withUrl(String url) {
             this.url = url;
@@ -102,6 +102,9 @@ public class Page {
         }
 
         private String extractDomainName(String url) {
+            if (url == null) {
+                return "";
+            }
             return StringUtils.substringBefore(StringUtils.substringAfter(url, "://"), "/").replaceFirst("^www.*?\\.", "");
         }
 
