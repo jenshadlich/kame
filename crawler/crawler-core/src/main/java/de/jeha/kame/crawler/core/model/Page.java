@@ -22,13 +22,15 @@ public class Page {
     private final Hash hash;
     private final String url;
     private final Headers headers;
+    private final Document document;
     private final List<Link> links;
 
-    public Page(Domain domain, String url, Headers headers, List<Link> links) {
+    public Page(Domain domain, String url, Headers headers, Document document, List<Link> links) {
         this.domain = domain;
         this.hash = new Hash(url);
         this.url = url;
         this.headers = headers;
+        this.document = document;
         this.links = links;
     }
 
@@ -42,6 +44,14 @@ public class Page {
 
     public String getUrl() {
         return url;
+    }
+
+    public Headers getHeaders() {
+        return headers;
+    }
+
+    public Document getDocument() {
+        return document;
     }
 
     public List<Link> getLinks() {
@@ -84,7 +94,7 @@ public class Page {
             List<Link> links = LINK_EXTRACTOR.get(document).stream().map(Link::new).collect(Collectors.toList());
 
             String domain = extractDomainName(url);
-            return new Page(new Domain(domain), url, headers, links);
+            return new Page(new Domain(domain), url, headers, document, links);
         }
 
         public static Builder New() {
