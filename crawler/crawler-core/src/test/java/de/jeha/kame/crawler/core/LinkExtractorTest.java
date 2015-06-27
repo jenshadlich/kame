@@ -17,14 +17,14 @@ public class LinkExtractorTest extends AbstractLinkExtractorTest {
     public void testCrawlResult() {
         CrawlResult result = buildCrawlResult("");
 
-        assertEquals(200, result.getMetadata().getStatusCode());
-        assertEquals(0, result.getMetadata().getTimeTaken());
-        assertEquals("text/html", result.getMetadata().getHeaders().getContentType());
+        assertEquals(200, result.getStatusCode());
+        assertEquals(0, result.getTimeTaken());
+        assertEquals("text/html", result.getPage().getHeaders().getContentType());
     }
 
     @Test
     public void testSimple() throws IOException {
-        List<String> links = new LinkExtractor().get(buildCrawlResultFromResource("/simple.html"));
+        List<String> links = new LinkExtractor().get(getDocumentFromResource("/simple.html"));
 
         assertEquals(1, links.size());
         assertEquals("http://www.google.com", links.get(0));

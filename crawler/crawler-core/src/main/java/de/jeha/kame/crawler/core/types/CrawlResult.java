@@ -1,76 +1,38 @@
 package de.jeha.kame.crawler.core.types;
 
-import de.jeha.kame.crawler.core.http.Headers;
-
-import java.util.Map;
+import de.jeha.kame.crawler.core.model.Page;
 
 /**
  * @author jenshadlich@googlemail.com
- * @todo replace by Page
  */
 public class CrawlResult {
 
-    private final String url;
+    private final Page page;
     private final String content;
-    private final Metadata metadata;
+    private final int statusCode;
+    private final long timeTaken;
 
-    public CrawlResult(String url, String content, Metadata metadata) {
-        this.url = url;
+    public CrawlResult(Page page, String content, int statusCode, long timeTaken) {
+        this.page = page;
         this.content = content;
-        this.metadata = metadata;
+        this.statusCode = statusCode;
+        this.timeTaken = timeTaken;
     }
 
-    public String getUrl() {
-        return url;
+    public Page getPage() {
+        return page;
     }
 
     public String getContent() {
         return content;
     }
 
-    public boolean hasContent() {
-        return content != null && !content.isEmpty();
+    public int getStatusCode() {
+        return statusCode;
     }
 
-    public String getContentType() {
-        return getMetadata().getHeaders().getContentType();
-    }
-
-    public Metadata getMetadata() {
-        return metadata;
-    }
-
-    // -----------------------------------------------------------------------------------------------------------------
-
-    public static class Metadata {
-
-        private final Headers headers;
-        private final int statusCode;
-        private final long timeTaken;
-
-        public Metadata(Map<String, String> headers, int statusCode, long timeTaken) {
-            this.headers = new Headers(headers);
-            this.statusCode = statusCode;
-            this.timeTaken = timeTaken;
-        }
-
-        public Metadata(Headers headers, int statusCode, long timeTaken) {
-            this.headers = headers;
-            this.statusCode = statusCode;
-            this.timeTaken = timeTaken;
-        }
-
-        public Headers getHeaders() {
-            return headers;
-        }
-
-        public int getStatusCode() {
-            return statusCode;
-        }
-
-        public long getTimeTaken() {
-            return timeTaken;
-        }
+    public long getTimeTaken() {
+        return timeTaken;
     }
 
 }

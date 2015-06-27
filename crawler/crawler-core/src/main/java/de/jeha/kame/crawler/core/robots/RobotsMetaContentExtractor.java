@@ -1,9 +1,8 @@
 package de.jeha.kame.crawler.core.robots;
 
-import de.jeha.kame.crawler.core.types.CrawlResult;
 import de.jeha.kame.crawler.core.http.Headers;
+import de.jeha.kame.crawler.core.model.Page;
 import org.apache.commons.lang3.StringUtils;
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
@@ -12,8 +11,8 @@ import org.jsoup.select.Elements;
  */
 public class RobotsMetaContentExtractor {
 
-    public RobotsMetaContent get(CrawlResult crawlResult) {
-        final String content = crawlResult.getContent();
+    public RobotsMetaContent get(Page page) {
+        Document document = page.getDocument();
 
         boolean metaRobotsSet = false;
         boolean robotsTagSet = false;
@@ -21,13 +20,7 @@ public class RobotsMetaContentExtractor {
         boolean follow = true;
         boolean archive = true;
 
-        if (content == null) {
-            throw new IllegalStateException("content must not be null");
-        }
-
-        Document doc = Jsoup.parse(content);
-
-        Elements elements = doc.select("meta[name=robots]");
+        Elements elements = document.select("meta[name=robots]");
         if (!elements.isEmpty()) {
             metaRobotsSet = true;
             final String metaContent = elements.first().attr("content");
@@ -37,15 +30,13 @@ public class RobotsMetaContentExtractor {
             archive = !StringUtils.containsIgnoreCase(metaContent, "noarchive");
         }
 
-        if (crawlResult.getMetadata() != null) {
-            String robotsTag = crawlResult.getMetadata().getHeaders().get(Headers.X_ROBOTS_TAG);
-            if (robotsTag != null) {
-                robotsTagSet = true;
+        String robotsTag = page.getHeaders().get(Headers.X_ROBOTS_TAG);
+        if (robotsTag != null) {
+            robotsTagSet = true;
 
-                index = !StringUtils.containsIgnoreCase(robotsTag, "noindex");
-                follow = !StringUtils.containsIgnoreCase(robotsTag, "nofollow");
-                archive = !StringUtils.containsIgnoreCase(robotsTag, "noarchive");
-            }
+            index = !StringUtils.containsIgnoreCase(robotsTag, "noindex");
+            follow = !StringUtils.containsIgnoreCase(robotsTag, "nofollow");
+            archive = !StringUtils.containsIgnoreCase(robotsTag, "noarchive");
         }
 
         return new RobotsMetaContent(metaRobotsSet, robotsTagSet, index, follow, archive);

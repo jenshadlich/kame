@@ -25,6 +25,9 @@ public class Headers {
 
     private final Map<String, String> headers = new HashMap<>();
 
+    public Headers() {
+    }
+
     public Headers(Map<String, String> headers) {
         this.headers.putAll(headers);
     }

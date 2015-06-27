@@ -40,7 +40,7 @@ public class FileDocumentStore implements DocumentStore {
                 "%s-%d-%s",
                 crawlId,
                 timestamp.toEpochSecond(),
-                FileNameUtils.stripToFilename(result.getUrl())
+                FileNameUtils.stripToFilename(result.getPage().getUrl())
         );
 
         saveDocument(filenamePrefix, result);
@@ -59,7 +59,7 @@ public class FileDocumentStore implements DocumentStore {
 
     private void saveMetaRecord(String filenamePrefix, CrawlResult result) throws IOException {
         final String metaFilename = path + "/" + filenamePrefix + ".meta.json";
-        final String metaRecord = String.format("{\n  url: %s\n}\n", StringEscapeUtils.escapeJson(result.getUrl()));
+        final String metaRecord = String.format("{\n  url: %s\n}\n", StringEscapeUtils.escapeJson(result.getPage().getUrl()));
 
         FileUtils.writeStringToFile(new File(metaFilename), metaRecord);
         LOG.debug("file '{}' written", metaFilename);

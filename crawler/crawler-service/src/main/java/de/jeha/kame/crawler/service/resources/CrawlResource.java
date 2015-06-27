@@ -8,6 +8,7 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import de.jeha.kame.crawler.core.Crawler;
 import de.jeha.kame.crawler.core.LinkExtractor;
+import de.jeha.kame.crawler.core.model.Link;
 import de.jeha.kame.crawler.core.robots.RobotsMetaContent;
 import de.jeha.kame.crawler.core.robots.RobotsMetaContentExtractor;
 import de.jeha.kame.crawler.core.types.CrawlResult;
@@ -26,7 +27,6 @@ import javax.ws.rs.core.MediaType;
 import java.io.IOException;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
-import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeoutException;
 
@@ -73,17 +73,16 @@ public class CrawlResource {
 
             publishCrawlResult(crawlId);
 
-            List<String> links = linkExtractor.get(result);
-            for (String link : links) {
-                LOG.debug("{}", link);
+            for (Link link : result.getPage().getLinks()) {
+                LOG.debug("{}", link.getValue());
             }
-            RobotsMetaContent robotsMetaContent = robotsMetaContentExtractor.get(result);
+            RobotsMetaContent robotsMetaContent = robotsMetaContentExtractor.get(result.getPage());
             LOG.debug("{}", robotsMetaContent);
 
             return CrawlResponse.withSuccess(
                     crawlId,
                     now.toString(),
-                    result.getMetadata().getStatusCode()
+                    result.getStatusCode()
             );
         } catch (IOException e) {
             LOG.warn("An I/O error occurred", e);

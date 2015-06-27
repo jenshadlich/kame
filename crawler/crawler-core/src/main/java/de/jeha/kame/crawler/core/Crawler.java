@@ -1,6 +1,7 @@
 package de.jeha.kame.crawler.core;
 
 import de.jeha.kame.crawler.core.httpclient.HttpClientFactory;
+import de.jeha.kame.crawler.core.model.Page;
 import de.jeha.kame.crawler.core.types.CrawlResult;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.time.StopWatch;
@@ -52,7 +53,6 @@ public class Crawler {
      *
      * @return crawl result
      * @throws IOException
-     * @todo replace return type with Page
      */
     public CrawlResult execute() throws IOException {
         LOG.info("Crawling: '{}'", url);
@@ -80,15 +80,15 @@ public class Crawler {
                 headers.put(header.getName(), header.getValue());
             }
 
-            //Page.Builder.New().withUrl(url).withContent(content).build();
+            Page page = Page.Builder.New()
+                    .withUrl(url)
+                    .withContent(content)
+                    .withHeaders(headers)
+                    .build();
 
             stopWatch.stop();
 
-            return new CrawlResult(
-                    url,
-                    content,
-                    new CrawlResult.Metadata(headers, statusLine.getStatusCode(), stopWatch.getTime())
-            );
+            return new CrawlResult(page, content, statusLine.getStatusCode(), stopWatch.getTime());
         } finally {
             httpGet.releaseConnection();
         }

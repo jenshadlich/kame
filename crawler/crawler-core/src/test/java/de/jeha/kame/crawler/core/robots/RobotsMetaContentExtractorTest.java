@@ -1,5 +1,6 @@
 package de.jeha.kame.crawler.core.robots;
 
+import de.jeha.kame.crawler.core.model.Page;
 import de.jeha.kame.crawler.core.types.CrawlResult;
 import de.jeha.kame.crawler.core.http.Headers;
 import org.apache.commons.io.IOUtils;
@@ -20,7 +21,9 @@ public class RobotsMetaContentExtractorTest {
     @Test
     public void testDefault() throws IOException {
         final String content = IOUtils.toString(this.getClass().getResourceAsStream("/simple.html"));
-        RobotsMetaContent meta = new RobotsMetaContentExtractor().get(new CrawlResult(null, content, null));
+
+        Page page = Page.Builder.New().withContent(content).build();
+        RobotsMetaContent meta = new RobotsMetaContentExtractor().get(page);
 
         assertTrue(meta.isIndex());
         assertTrue(meta.isFollow());
@@ -34,9 +37,13 @@ public class RobotsMetaContentExtractorTest {
         final String content = IOUtils.toString(this.getClass().getResourceAsStream("/simple.html"));
         Map<String, String> headers = new HashMap<>();
         headers.put(Headers.X_ROBOTS_TAG, "noindex");
-        RobotsMetaContent meta = new RobotsMetaContentExtractor().get(
-                new CrawlResult(null, content, new CrawlResult.Metadata(headers, 200, 0))
-        );
+
+        Page page = Page.Builder.New()
+                .withContent(content)
+                .withHeaders(headers)
+                .build();
+
+        RobotsMetaContent meta = new RobotsMetaContentExtractor().get(page);
 
         assertFalse(meta.isIndex());
         assertTrue(meta.isFollow());
@@ -49,7 +56,10 @@ public class RobotsMetaContentExtractorTest {
     public void testNoIndexNoFollow() throws IOException {
         final String content =
                 IOUtils.toString(this.getClass().getResourceAsStream("/robots/meta_robots_noindex_nofollow.html"));
-        RobotsMetaContent meta = new RobotsMetaContentExtractor().get(new CrawlResult(null, content, null));
+
+        Page page = Page.Builder.New().withContent(content).build();
+
+        RobotsMetaContent meta = new RobotsMetaContentExtractor().get(page);
 
         assertFalse(meta.isIndex());
         assertFalse(meta.isFollow());
