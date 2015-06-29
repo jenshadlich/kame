@@ -75,6 +75,8 @@ public class Crawler {
             final String contentType = entity.getContentType().getValue();
             LOG.info(contentType);
 
+            stopWatch.stop();
+
             Map<String, String> headers = new HashMap<>();
             for (Header header : response.getAllHeaders()) {
                 headers.put(header.getName(), header.getValue());
@@ -85,8 +87,6 @@ public class Crawler {
                     .withContent(content)
                     .withHeaders(headers)
                     .build();
-
-            stopWatch.stop();
 
             return new CrawlResult(page, content, statusLine.getStatusCode(), stopWatch.getTime());
         } finally {
