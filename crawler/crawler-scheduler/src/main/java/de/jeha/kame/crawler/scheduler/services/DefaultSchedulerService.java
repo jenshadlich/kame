@@ -1,16 +1,14 @@
 package de.jeha.kame.crawler.scheduler.services;
 
 import de.jeha.kame.crawler.scheduler.model.CrawlJob;
+import org.quartz.JobBuilder;
+import org.quartz.JobDetail;
 import org.quartz.Scheduler;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * @author jenshadlich@googlemail.com
  */
 public class DefaultSchedulerService implements SchedulerService, SchedulerLifecycle {
-
-    private static final Logger LOG = LoggerFactory.getLogger(DefaultSchedulerService.class);
 
     private final Scheduler scheduler;
 
@@ -20,15 +18,20 @@ public class DefaultSchedulerService implements SchedulerService, SchedulerLifec
 
     @Override
     public void addJob(CrawlJob crawlJob) throws SchedulerException {
-        /*
-        JobDetail jobDetail = new JobDetailImpl();
+        JobDetail jobDetail = JobBuilder.newJob()
+                .ofType(QuartzCrawlJob.class)
+                .withIdentity(crawlJob.getId())
+                .usingJobData(QuartzCrawlJob.NAME, crawlJob.getName())
+                .usingJobData(QuartzCrawlJob.SEED_URL, crawlJob.getSeedUrl())
+                .storeDurably(false)
+                .requestRecovery(false)
+                .build();
 
         try {
             scheduler.addJob(jobDetail, false);
         } catch (org.quartz.SchedulerException e) {
             throw new SchedulerException(e);
         }
-        */
     }
 
     @Override
