@@ -50,10 +50,12 @@ public class CrawlerScheduler extends Application<CrawlerSchedulerConfiguration>
             System.exit(1);
         }
 
+        SchedulerService schedulerService = new SchedulerService(scheduler);
+
         environment.admin().addTask(new StartSchedulerTask(scheduler));
         environment.admin().addTask(new SuspendSchedulerTask(scheduler));
 
-        environment.jersey().register(new CrawlJobResource());
+        environment.jersey().register(new CrawlJobResource(schedulerService));
 
         environment.jersey().disable(ServerProperties.WADL_FEATURE_DISABLE);
     }
