@@ -3,6 +3,8 @@ package de.jeha.kame.crawler.service.api;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.List;
+
 /**
  * @author jenshadlich@googlemail.com
  */
@@ -13,11 +15,13 @@ public class CrawlResponse {
     private final String date;
     private final Integer statusCode;
     private final Error error;
+    private final List<String> links;
 
-    private CrawlResponse(String id, String date, int statusCode) {
+    private CrawlResponse(String id, String date, int statusCode, List<String> links) {
         this.id = id;
         this.date = date;
         this.statusCode = statusCode;
+        this.links = links;
         this.error = null;
     }
 
@@ -26,6 +30,7 @@ public class CrawlResponse {
         this.date = date;
         this.error = error;
         this.statusCode = null;
+        this.links = null;
     }
 
     @JsonProperty
@@ -44,6 +49,11 @@ public class CrawlResponse {
     }
 
     @JsonProperty
+    public List<String> getLinks() {
+        return links;
+    }
+
+    @JsonProperty
     public Boolean hasError() {
         return error == null ? null : Boolean.TRUE;
     }
@@ -53,8 +63,8 @@ public class CrawlResponse {
         return error;
     }
 
-    public static CrawlResponse withSuccess(String id, String date, int statusCode) {
-        return new CrawlResponse(id, date, statusCode);
+    public static CrawlResponse withSuccess(String id, String date, int statusCode, List<String> links) {
+        return new CrawlResponse(id, date, statusCode, links);
     }
 
     public static CrawlResponse withError(String id, String date, String errorMessage) {

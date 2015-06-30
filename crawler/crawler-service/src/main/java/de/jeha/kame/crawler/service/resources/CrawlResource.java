@@ -81,7 +81,8 @@ public class CrawlResource {
             return CrawlResponse.withSuccess(
                     crawlId,
                     now.toString(),
-                    result.getStatusCode()
+                    result.getStatusCode(),
+                    result.getPage().getLinks()
             );
         } catch (IOException e) {
             LOG.warn("An I/O error occurred", e);
