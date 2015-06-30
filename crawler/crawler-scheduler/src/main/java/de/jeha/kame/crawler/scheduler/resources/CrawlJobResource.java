@@ -2,10 +2,11 @@ package de.jeha.kame.crawler.scheduler.resources;
 
 
 import com.codahale.metrics.annotation.Timed;
-import de.jeha.kame.crawler.scheduler.services.SchedulerService;
 import de.jeha.kame.crawler.scheduler.api.SubmitCrawlJobRequest;
 import de.jeha.kame.crawler.scheduler.api.SubmitCrawlJobResponse;
 import de.jeha.kame.crawler.scheduler.model.CrawlJob;
+import de.jeha.kame.crawler.scheduler.services.SchedulerException;
+import de.jeha.kame.crawler.scheduler.services.SchedulerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -40,7 +41,12 @@ public class CrawlJobResource {
                 request.getAllowedDomains()
         );
 
-        schedulerService.addJob(crawlJob);
+        try {
+            schedulerService.addJob(crawlJob);
+        } catch (SchedulerException e) {
+            LOG.error("Unable to add job", e);
+            return new SubmitCrawlJobResponse(null); // TODO: add an appropriate error response
+        }
 
         return new SubmitCrawlJobResponse(crawlJob.getId());
     }
