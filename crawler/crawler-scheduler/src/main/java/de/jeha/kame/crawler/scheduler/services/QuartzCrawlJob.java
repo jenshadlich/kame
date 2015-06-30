@@ -1,5 +1,6 @@
 package de.jeha.kame.crawler.scheduler.services;
 
+import de.jeha.kame.crawler.scheduler.model.CrawlJob;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
@@ -13,13 +14,12 @@ public class QuartzCrawlJob implements Job {
 
     private static final Logger LOG = LoggerFactory.getLogger(QuartzCrawlJob.class);
 
-    public static final String NAME = "NAME";
-    public static final String SEED_URL = "SEED_URL";
+    public static final String CRAWL_JOB = "CRAWL_JOB";
 
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
-        LOG.info("{}", context.getJobDetail().getJobDataMap().get(NAME));
-        LOG.info("{}", context.getJobDetail().getJobDataMap().get(SEED_URL));
+        CrawlJob crawlJob = (CrawlJob) context.getJobDetail().getJobDataMap().get(CRAWL_JOB);
+        LOG.info("{}", crawlJob);
     }
 
 }
