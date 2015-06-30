@@ -5,8 +5,8 @@ package de.jeha.kame.crawler.scheduler.services;
  */
 public interface SchedulerLifecycle {
 
-    public void start();
+    public void start() throws SchedulerException;
 
-    public void suspend();
+    public void suspend() throws SchedulerException;
 
 }

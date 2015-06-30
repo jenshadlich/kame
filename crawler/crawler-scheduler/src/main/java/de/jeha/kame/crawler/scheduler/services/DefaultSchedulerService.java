@@ -2,7 +2,6 @@ package de.jeha.kame.crawler.scheduler.services;
 
 import de.jeha.kame.crawler.scheduler.model.CrawlJob;
 import org.quartz.Scheduler;
-import org.quartz.SchedulerException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,24 +19,33 @@ public class DefaultSchedulerService implements SchedulerService, SchedulerLifec
     }
 
     @Override
-    public void addJob(CrawlJob crawlJob) {
+    public void addJob(CrawlJob crawlJob) throws SchedulerException {
+        /*
+        JobDetail jobDetail = new JobDetailImpl();
+
+        try {
+            scheduler.addJob(jobDetail, false);
+        } catch (org.quartz.SchedulerException e) {
+            throw new SchedulerException(e);
+        }
+        */
     }
 
     @Override
-    public void start() {
+    public void start() throws SchedulerException {
         try {
             scheduler.start();
-        } catch (SchedulerException e) {
-            LOG.error("Unable to start the scheduler", e);
+        } catch (org.quartz.SchedulerException e) {
+            throw new SchedulerException(e);
         }
     }
 
     @Override
-    public void suspend() {
+    public void suspend() throws SchedulerException {
         try {
             scheduler.standby();
-        } catch (SchedulerException e) {
-            LOG.error("Unable to suspend the scheduler", e);
+        } catch (org.quartz.SchedulerException e) {
+            throw new SchedulerException(e);
         }
     }
 

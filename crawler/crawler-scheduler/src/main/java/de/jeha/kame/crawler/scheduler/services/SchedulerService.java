@@ -7,6 +7,6 @@ import de.jeha.kame.crawler.scheduler.model.CrawlJob;
  */
 public interface SchedulerService {
 
-    public void addJob(CrawlJob crawlJob);
-    
+    public void addJob(CrawlJob crawlJob) throws SchedulerException;
+
 }
