@@ -52,10 +52,10 @@ public class CrawlerScheduler extends Application<CrawlerSchedulerConfiguration>
             System.exit(1);
         }
 
-        SchedulerService schedulerService = new DefaultSchedulerService(scheduler);
+        DefaultSchedulerService schedulerService = new DefaultSchedulerService(scheduler);
 
-        environment.admin().addTask(new StartSchedulerTask(scheduler));
-        environment.admin().addTask(new SuspendSchedulerTask(scheduler));
+        environment.admin().addTask(new StartSchedulerTask(schedulerService));
+        environment.admin().addTask(new SuspendSchedulerTask(schedulerService));
 
         environment.jersey().register(new CrawlJobResource(schedulerService));
 

@@ -1,8 +1,8 @@
 package de.jeha.kame.crawler.scheduler.tasks;
 
 import com.google.common.collect.ImmutableMultimap;
+import de.jeha.kame.crawler.scheduler.services.SchedulerLifecycle;
 import io.dropwizard.servlets.tasks.Task;
-import org.quartz.Scheduler;
 
 import java.io.PrintWriter;
 
@@ -11,9 +11,9 @@ import java.io.PrintWriter;
  */
 public class SuspendSchedulerTask extends Task {
 
-    private final Scheduler scheduler;
+    private final SchedulerLifecycle scheduler;
 
-    public SuspendSchedulerTask(Scheduler scheduler) {
+    public SuspendSchedulerTask(SchedulerLifecycle scheduler) {
         super("suspendScheduler");
         this.scheduler = scheduler;
     }
@@ -22,8 +22,9 @@ public class SuspendSchedulerTask extends Task {
     public void execute(ImmutableMultimap<String, String> parameters, PrintWriter output) throws Exception {
         output.write("Suspend scheduler...");
         output.flush();
-        scheduler.standby();
+        scheduler.suspend();
 
         output.write("Done!");
     }
+
 }

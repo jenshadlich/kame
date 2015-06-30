@@ -1,8 +1,8 @@
 package de.jeha.kame.crawler.scheduler.tasks;
 
 import com.google.common.collect.ImmutableMultimap;
+import de.jeha.kame.crawler.scheduler.services.SchedulerLifecycle;
 import io.dropwizard.servlets.tasks.Task;
-import org.quartz.Scheduler;
 
 import java.io.PrintWriter;
 
@@ -11,9 +11,9 @@ import java.io.PrintWriter;
  */
 public class StartSchedulerTask extends Task {
 
-    private final Scheduler scheduler;
+    private final SchedulerLifecycle scheduler;
 
-    public StartSchedulerTask(Scheduler scheduler) {
+    public StartSchedulerTask(SchedulerLifecycle scheduler) {
         super("startScheduler");
         this.scheduler = scheduler;
     }
