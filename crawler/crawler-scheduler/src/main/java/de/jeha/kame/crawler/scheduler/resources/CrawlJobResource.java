@@ -2,7 +2,7 @@ package de.jeha.kame.crawler.scheduler.resources;
 
 
 import com.codahale.metrics.annotation.Timed;
-import de.jeha.kame.crawler.scheduler.SchedulerService;
+import de.jeha.kame.crawler.scheduler.services.SchedulerService;
 import de.jeha.kame.crawler.scheduler.api.SubmitCrawlJobRequest;
 import de.jeha.kame.crawler.scheduler.api.SubmitCrawlJobResponse;
 import de.jeha.kame.crawler.scheduler.model.CrawlJob;

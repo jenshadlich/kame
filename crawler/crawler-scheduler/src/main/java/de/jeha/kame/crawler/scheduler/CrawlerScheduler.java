@@ -5,6 +5,8 @@ import de.jeha.kame.crawler.scheduler.config.CrawlerSchedulerConfiguration;
 import de.jeha.kame.crawler.scheduler.config.CrawlerServiceConfiguration;
 import de.jeha.kame.crawler.scheduler.quartz.SchedulerBundle;
 import de.jeha.kame.crawler.scheduler.resources.CrawlJobResource;
+import de.jeha.kame.crawler.scheduler.services.DefaultSchedulerService;
+import de.jeha.kame.crawler.scheduler.services.SchedulerService;
 import de.jeha.kame.crawler.scheduler.tasks.StartSchedulerTask;
 import de.jeha.kame.crawler.scheduler.tasks.SuspendSchedulerTask;
 import io.dropwizard.Application;
@@ -50,7 +52,7 @@ public class CrawlerScheduler extends Application<CrawlerSchedulerConfiguration>
             System.exit(1);
         }
 
-        SchedulerService schedulerService = new SchedulerService(scheduler);
+        SchedulerService schedulerService = new DefaultSchedulerService(scheduler);
 
         environment.admin().addTask(new StartSchedulerTask(scheduler));
         environment.admin().addTask(new SuspendSchedulerTask(scheduler));
