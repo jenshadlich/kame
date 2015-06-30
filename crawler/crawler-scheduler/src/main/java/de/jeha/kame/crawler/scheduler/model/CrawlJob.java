@@ -1,5 +1,8 @@
 package de.jeha.kame.crawler.scheduler.model;
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -34,6 +37,11 @@ public class CrawlJob {
 
     public List<String> getAllowedDomains() {
         return allowedDomains;
+    }
+
+    @Override
+    public String toString() {
+        return ReflectionToStringBuilder.toString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
 
 }
