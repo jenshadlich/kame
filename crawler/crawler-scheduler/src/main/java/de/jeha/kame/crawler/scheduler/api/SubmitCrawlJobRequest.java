@@ -11,6 +11,8 @@ import java.util.List;
  */
 public class SubmitCrawlJobRequest {
 
+    public static final int DEFAULT_LIMIT = 1;
+
     @JsonProperty
     private String name;
 
@@ -21,7 +23,7 @@ public class SubmitCrawlJobRequest {
     private List<String> allowedDomains;
 
     @JsonProperty
-    private int limit;
+    private int limit = DEFAULT_LIMIT;
 
     public String getName() {
         return name;
