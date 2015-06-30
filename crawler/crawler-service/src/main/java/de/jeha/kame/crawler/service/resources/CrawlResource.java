@@ -8,7 +8,6 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import de.jeha.kame.crawler.core.Crawler;
 import de.jeha.kame.crawler.core.LinkExtractor;
-import de.jeha.kame.crawler.core.model.Link;
 import de.jeha.kame.crawler.core.robots.RobotsMetaContent;
 import de.jeha.kame.crawler.core.robots.RobotsMetaContentExtractor;
 import de.jeha.kame.crawler.core.types.CrawlResult;
@@ -73,8 +72,8 @@ public class CrawlResource {
 
             publishCrawlResult(crawlId);
 
-            for (Link link : result.getPage().getLinks()) {
-                LOG.debug("{}", link.getValue());
+            for (String link : result.getPage().getLinks()) {
+                LOG.debug("{}", link);
             }
             RobotsMetaContent robotsMetaContent = robotsMetaContentExtractor.get(result.getPage());
             LOG.debug("{}", robotsMetaContent);

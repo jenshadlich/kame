@@ -11,7 +11,6 @@ import org.jsoup.nodes.Document;
 
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * @author jenshadlich@googlemail.com
@@ -23,9 +22,9 @@ public class Page {
     private final String url;
     private final Headers headers;
     private final Document document;
-    private final List<Link> links;
+    private final List<String> links;
 
-    public Page(Domain domain, String url, Headers headers, Document document, List<Link> links) {
+    public Page(Domain domain, String url, Headers headers, Document document, List<String> links) {
         this.domain = domain;
         this.hash = new Hash(url);
         this.url = url;
@@ -54,7 +53,7 @@ public class Page {
         return document;
     }
 
-    public List<Link> getLinks() {
+    public List<String> getLinks() {
         return links;
     }
 
@@ -90,8 +89,8 @@ public class Page {
         }
 
         public Page build() {
-            Document document = Jsoup.parse(content);
-            List<Link> links = LINK_EXTRACTOR.get(document).stream().map(Link::new).collect(Collectors.toList());
+            final Document document = Jsoup.parse(content);
+            final List<String> links = LINK_EXTRACTOR.get(document);
 
             String domain = extractDomainName(url);
             return new Page(new Domain(domain), url, headers, document, links);
