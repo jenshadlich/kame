@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 /**
  * @author jenshadlich@googlemail.com
  */
-class QuartzCrawlJob implements Job {
+public class QuartzCrawlJob implements Job {
 
     private static final Logger LOG = LoggerFactory.getLogger(QuartzCrawlJob.class);
 
@@ -18,8 +18,8 @@ class QuartzCrawlJob implements Job {
 
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
-        LOG.info("{}", context.get(NAME));
-        LOG.info("{}", context.get(SEED_URL));
+        LOG.info("{}", context.getJobDetail().getJobDataMap().get(NAME));
+        LOG.info("{}", context.getJobDetail().getJobDataMap().get(SEED_URL));
     }
 
 }
