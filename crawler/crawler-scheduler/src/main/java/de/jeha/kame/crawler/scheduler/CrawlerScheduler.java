@@ -46,7 +46,7 @@ public class CrawlerScheduler extends Application<CrawlerSchedulerConfiguration>
         try {
             scheduler = configuration.getScheduler().buildScheduler();
         } catch (Exception e) {
-            LOG.error("Unable to build scheduler", e);
+            LOG.error("Unable to build a scheduler", e);
             System.exit(1);
         }
 
