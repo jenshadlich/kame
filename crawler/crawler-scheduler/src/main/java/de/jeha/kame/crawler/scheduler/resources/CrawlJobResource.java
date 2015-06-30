@@ -38,7 +38,8 @@ public class CrawlJobResource {
         CrawlJob crawlJob = new CrawlJob(
                 request.getName(),
                 request.getSeedUrl(),
-                request.getAllowedDomains()
+                request.getAllowedDomains(),
+                request.getLimit()
         );
 
         try {

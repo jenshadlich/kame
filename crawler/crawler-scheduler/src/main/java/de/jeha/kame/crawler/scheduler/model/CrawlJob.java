@@ -15,12 +15,14 @@ public class CrawlJob {
     private final String name;
     private final String seedUrl;
     private final List<String> allowedDomains;
+    private final int limit; // TODO: make limit either number or time box
 
-    public CrawlJob(String name, String seedUrl, List<String> allowedDomains) {
+    public CrawlJob(String name, String seedUrl, List<String> allowedDomains, int limit) {
         id = UUID.randomUUID().toString();
         this.name = name;
         this.seedUrl = seedUrl;
         this.allowedDomains = allowedDomains;
+        this.limit = limit;
     }
 
     public String getId() {
@@ -37,6 +39,10 @@ public class CrawlJob {
 
     public List<String> getAllowedDomains() {
         return allowedDomains;
+    }
+
+    public int getLimit() {
+        return limit;
     }
 
     @Override

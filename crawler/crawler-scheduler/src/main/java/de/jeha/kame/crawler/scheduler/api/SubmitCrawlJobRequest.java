@@ -20,6 +20,9 @@ public class SubmitCrawlJobRequest {
     @JsonProperty
     private List<String> allowedDomains;
 
+    @JsonProperty
+    private int limit;
+
     public String getName() {
         return name;
     }
@@ -30,6 +33,10 @@ public class SubmitCrawlJobRequest {
 
     public List<String> getAllowedDomains() {
         return allowedDomains;
+    }
+
+    public int getLimit() {
+        return limit;
     }
 
     @Override
