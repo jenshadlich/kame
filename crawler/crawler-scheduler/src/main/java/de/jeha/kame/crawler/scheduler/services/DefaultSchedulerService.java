@@ -3,6 +3,7 @@ package de.jeha.kame.crawler.scheduler.services;
 import de.jeha.kame.crawler.scheduler.model.CrawlJob;
 import org.quartz.JobBuilder;
 import org.quartz.JobDetail;
+import org.quartz.JobKey;
 import org.quartz.Scheduler;
 
 /**
@@ -18,9 +19,10 @@ public class DefaultSchedulerService implements SchedulerService, SchedulerLifec
 
     @Override
     public void addJob(CrawlJob crawlJob) throws SchedulerException {
+        JobKey jobKey = new JobKey(crawlJob.getId());
         JobDetail jobDetail = JobBuilder.newJob()
                 .ofType(QuartzCrawlJob.class)
-                .withIdentity(crawlJob.getId())
+                .withIdentity(jobKey)
                 .usingJobData(QuartzCrawlJob.NAME, crawlJob.getName())
                 .usingJobData(QuartzCrawlJob.SEED_URL, crawlJob.getSeedUrl())
                 .storeDurably(false)
@@ -28,7 +30,8 @@ public class DefaultSchedulerService implements SchedulerService, SchedulerLifec
                 .build();
 
         try {
-            scheduler.addJob(jobDetail, false);
+            scheduler.addJob(jobDetail, false, true);
+            scheduler.triggerJob(jobKey);
         } catch (org.quartz.SchedulerException e) {
             throw new SchedulerException(e);
         }
