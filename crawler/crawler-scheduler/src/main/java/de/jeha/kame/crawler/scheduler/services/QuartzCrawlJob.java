@@ -1,5 +1,6 @@
 package de.jeha.kame.crawler.scheduler.services;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.jeha.kame.crawler.core.http.ContentType;
@@ -17,6 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * @author jenshadlich@googlemail.com
@@ -40,10 +42,12 @@ public class QuartzCrawlJob implements Job {
 
         try {
             httpPost.setEntity(new StringEntity(objectMapper.writeValueAsString(request), "UTF-8"));
-            HttpResponse response = HttpClients.createDefault().execute(httpPost);
+            HttpResponse httpResponse = HttpClients.createDefault().execute(httpPost);
 
-            String responseJson = EntityUtils.toString(response.getEntity());
-            LOG.info("{}", responseJson);
+            String responseJson = EntityUtils.toString(httpResponse.getEntity());
+            CrawlResponse response = objectMapper.readValue(responseJson, CrawlResponse.class);
+
+            LOG.info("{}", response.getId());
 
         } catch (IOException e) {
             throw new JobExecutionException(e);
@@ -51,7 +55,7 @@ public class QuartzCrawlJob implements Job {
 
     }
 
-    public class CrawlRequest {
+    public static class CrawlRequest {
 
         @JsonProperty
         private String url;
@@ -62,6 +66,39 @@ public class QuartzCrawlJob implements Job {
 
         public String getUrl() {
             return url;
+        }
+
+    }
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public static class CrawlResponse {
+
+        @JsonProperty
+        private String id;
+
+        @JsonProperty
+        private String date;
+
+        @JsonProperty
+        private Integer statusCode;
+
+        @JsonProperty
+        private List<String> links;
+
+        public String getId() {
+            return id;
+        }
+
+        public String getDate() {
+            return date;
+        }
+
+        public Integer getStatusCode() {
+            return statusCode;
+        }
+
+        public List<String> getLinks() {
+            return links;
         }
 
     }
