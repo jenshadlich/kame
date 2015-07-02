@@ -8,7 +8,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class CrawlRequest {
 
     @JsonProperty
-    private String url;
+    private final String url;
+
+    public CrawlRequest(@JsonProperty("url") String url) {
+        this.url = url;
+    }
 
     public String getUrl() {
         return url;
