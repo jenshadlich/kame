@@ -25,3 +25,4 @@ crawler/crawler-scheduler/crawler-scheduler.iml
 crawler/rabbitmq/.vagrant
 crawler/mongodb/.vagrant
 crawler/crawler-service-api/crawler-service-api.iml
+crawler/crawler-service-api/target
