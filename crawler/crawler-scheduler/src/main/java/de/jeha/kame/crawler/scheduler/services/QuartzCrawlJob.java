@@ -1,11 +1,11 @@
 package de.jeha.kame.crawler.scheduler.services;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.jeha.kame.crawler.core.http.ContentType;
 import de.jeha.kame.crawler.core.http.Headers;
 import de.jeha.kame.crawler.scheduler.model.CrawlJob;
+import de.jeha.kame.crawler.service.api.CrawlRequest;
+import de.jeha.kame.crawler.service.api.CrawlResponse;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
@@ -18,7 +18,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.util.List;
 
 /**
  * @author jenshadlich@googlemail.com
@@ -51,54 +50,6 @@ public class QuartzCrawlJob implements Job {
 
         } catch (IOException e) {
             throw new JobExecutionException(e);
-        }
-
-    }
-
-    public static class CrawlRequest {
-
-        @JsonProperty
-        private String url;
-
-        public CrawlRequest(String url) {
-            this.url = url;
-        }
-
-        public String getUrl() {
-            return url;
-        }
-
-    }
-
-    @JsonIgnoreProperties(ignoreUnknown = true)
-    public static class CrawlResponse {
-
-        @JsonProperty
-        private String id;
-
-        @JsonProperty
-        private String date;
-
-        @JsonProperty
-        private Integer statusCode;
-
-        @JsonProperty
-        private List<String> links;
-
-        public String getId() {
-            return id;
-        }
-
-        public String getDate() {
-            return date;
-        }
-
-        public Integer getStatusCode() {
-            return statusCode;
-        }
-
-        public List<String> getLinks() {
-            return links;
         }
 
     }
