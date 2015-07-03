@@ -21,7 +21,7 @@ logging:
     "de.jeha.kame": DEBUG
 
 crawler-service:
-  url: http://localhost:8080/crawl
+  endpointUrl: http://localhost:8080
 
 scheduler:
   instanceId: default

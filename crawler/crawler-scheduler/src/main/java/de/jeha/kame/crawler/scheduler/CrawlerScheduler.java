@@ -2,13 +2,12 @@ package de.jeha.kame.crawler.scheduler;
 
 
 import de.jeha.kame.crawler.scheduler.config.CrawlerSchedulerConfiguration;
-import de.jeha.kame.crawler.scheduler.config.CrawlerServiceConfiguration;
 import de.jeha.kame.crawler.scheduler.quartz.SchedulerBundle;
 import de.jeha.kame.crawler.scheduler.resources.CrawlJobResource;
 import de.jeha.kame.crawler.scheduler.services.DefaultSchedulerService;
-import de.jeha.kame.crawler.scheduler.services.SchedulerService;
 import de.jeha.kame.crawler.scheduler.tasks.StartSchedulerTask;
 import de.jeha.kame.crawler.scheduler.tasks.SuspendSchedulerTask;
+import de.jeha.kame.crawler.service.client.CrawlerServiceClient;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
@@ -41,18 +40,17 @@ public class CrawlerScheduler extends Application<CrawlerSchedulerConfiguration>
 
     @Override
     public void run(CrawlerSchedulerConfiguration configuration, Environment environment) {
-        CrawlerServiceConfiguration crawlerServiceConfiguration = configuration.getCrawlerService().build();
-        LOG.info("crawler-service.url: {}", crawlerServiceConfiguration.getUrl());
+        final CrawlerServiceClient crawlerServiceClient = configuration.getCrawlerService().buildClient();
 
-        Scheduler scheduler = null;
+        final Scheduler scheduler;
         try {
             scheduler = configuration.getScheduler().buildScheduler();
         } catch (Exception e) {
             LOG.error("Unable to build a scheduler", e);
-            System.exit(1);
+            throw new RuntimeException(e);
         }
 
-        DefaultSchedulerService schedulerService = new DefaultSchedulerService(scheduler);
+        DefaultSchedulerService schedulerService = new DefaultSchedulerService(scheduler, crawlerServiceClient);
 
         environment.admin().addTask(new StartSchedulerTask(schedulerService));
         environment.admin().addTask(new SuspendSchedulerTask(schedulerService));

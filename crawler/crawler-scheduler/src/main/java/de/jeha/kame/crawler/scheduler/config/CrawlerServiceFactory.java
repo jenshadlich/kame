@@ -11,14 +11,14 @@ public class CrawlerServiceFactory {
 
     @NotEmpty
     @JsonProperty
-    private String url;
+    private String endpointUrl;
 
     public CrawlerServiceConfiguration build() {
-        return new CrawlerServiceConfiguration(url);
+        return new CrawlerServiceConfiguration(endpointUrl);
     }
 
     public CrawlerServiceClient buildClient() {
-        return new CrawlerServiceClient(url);
+        return new CrawlerServiceClient(endpointUrl);
     }
 
 }

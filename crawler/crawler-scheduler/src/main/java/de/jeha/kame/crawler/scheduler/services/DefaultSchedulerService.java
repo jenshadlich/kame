@@ -1,6 +1,7 @@
 package de.jeha.kame.crawler.scheduler.services;
 
 import de.jeha.kame.crawler.scheduler.model.CrawlJob;
+import de.jeha.kame.crawler.service.client.CrawlerServiceClient;
 import org.quartz.*;
 
 /**
@@ -9,9 +10,11 @@ import org.quartz.*;
 public class DefaultSchedulerService implements SchedulerService, SchedulerLifecycle {
 
     private final Scheduler scheduler;
+    private final CrawlerServiceClient crawlerServiceClient;
 
-    public DefaultSchedulerService(Scheduler scheduler) {
+    public DefaultSchedulerService(Scheduler scheduler, CrawlerServiceClient crawlerServiceClient) {
         this.scheduler = scheduler;
+        this.crawlerServiceClient = crawlerServiceClient;
     }
 
     @Override
@@ -20,6 +23,7 @@ public class DefaultSchedulerService implements SchedulerService, SchedulerLifec
 
         JobDataMap jobData = new JobDataMap();
         jobData.put(QuartzCrawlJob.CRAWL_JOB, crawlJob);
+        jobData.put(QuartzCrawlJob.CRAWLER_SERVICE_CLIENT, crawlerServiceClient);
 
         JobDetail jobDetail = JobBuilder.newJob()
                 .ofType(QuartzCrawlJob.class)
