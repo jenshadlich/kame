@@ -28,28 +28,42 @@ public class QuartzCrawlJob implements Job {
 
     public static final String CRAWL_JOB = "CRAWL_JOB";
 
+    private final CrawlerService crawlerService = new CrawlerService("http://localhost:8080/crawl");
+
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
         CrawlJob crawlJob = (CrawlJob) context.getJobDetail().getJobDataMap().get(CRAWL_JOB);
         LOG.info("{}", crawlJob);
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        CrawlRequest request = new CrawlRequest(crawlJob.getSeedUrl());
-
-        HttpPost httpPost = new HttpPost("http://localhost:8080/crawl");
-        httpPost.setHeader(Headers.CONTENT_TYPE, ContentType.APPLICATION_JSON.getValue());
-
         try {
+            CrawlResponse response = crawlerService.crawl(new CrawlRequest(crawlJob.getSeedUrl()));
+            LOG.info("{}", response.getId());
+        } catch (IOException e) {
+            throw new JobExecutionException(e);
+        }
+
+    }
+
+    // -----------------------------------------------------------------------------------------------------------------
+
+    static class CrawlerService {
+
+        private final String endpointUrl;
+        private final ObjectMapper objectMapper = new ObjectMapper();
+
+        public CrawlerService(String endpointUrl) {
+            this.endpointUrl = endpointUrl;
+        }
+
+        public CrawlResponse crawl(CrawlRequest request) throws IOException {
+            HttpPost httpPost = new HttpPost(endpointUrl + "/crawl");
+            httpPost.setHeader(Headers.CONTENT_TYPE, ContentType.APPLICATION_JSON.getValue());
+
             httpPost.setEntity(new StringEntity(objectMapper.writeValueAsString(request), "UTF-8"));
             HttpResponse httpResponse = HttpClients.createDefault().execute(httpPost);
 
             String responseJson = EntityUtils.toString(httpResponse.getEntity());
-            CrawlResponse response = objectMapper.readValue(responseJson, CrawlResponse.class);
-
-            LOG.info("{}", response.getId());
-
-        } catch (IOException e) {
-            throw new JobExecutionException(e);
+            return objectMapper.readValue(responseJson, CrawlResponse.class);
         }
 
     }
