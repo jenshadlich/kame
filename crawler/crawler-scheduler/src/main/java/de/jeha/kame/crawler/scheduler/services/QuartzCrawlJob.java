@@ -28,7 +28,7 @@ public class QuartzCrawlJob implements Job {
 
     public static final String CRAWL_JOB = "CRAWL_JOB";
 
-    private final CrawlerService crawlerService = new CrawlerService("http://localhost:8080/crawl");
+    private final CrawlerService crawlerService = new CrawlerService("http://localhost:8080/crawl"); // TODO: get from config
 
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
