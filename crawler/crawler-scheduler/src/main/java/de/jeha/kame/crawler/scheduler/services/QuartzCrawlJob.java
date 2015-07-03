@@ -28,7 +28,7 @@ public class QuartzCrawlJob implements Job {
 
     public static final String CRAWL_JOB = "CRAWL_JOB";
 
-    private final CrawlerService crawlerService = new CrawlerService("http://localhost:8080/crawl"); // TODO: get from config
+    private final CrawlerServiceClient crawlerServiceClient = new CrawlerServiceClient("http://localhost:8080/crawl"); // TODO: get from config
 
     @Override
     public void execute(JobExecutionContext context) throws JobExecutionException {
@@ -36,7 +36,7 @@ public class QuartzCrawlJob implements Job {
         LOG.info("{}", crawlJob);
 
         try {
-            CrawlResponse response = crawlerService.crawl(new CrawlRequest(crawlJob.getSeedUrl()));
+            CrawlResponse response = crawlerServiceClient.crawl(new CrawlRequest(crawlJob.getSeedUrl()));
             LOG.info("{}", response.getId());
         } catch (IOException e) {
             throw new JobExecutionException(e);
@@ -46,12 +46,12 @@ public class QuartzCrawlJob implements Job {
 
     // -----------------------------------------------------------------------------------------------------------------
 
-    static class CrawlerService {
+    static class CrawlerServiceClient {
 
         private final String endpointUrl;
         private final ObjectMapper objectMapper = new ObjectMapper();
 
-        public CrawlerService(String endpointUrl) {
+        public CrawlerServiceClient(String endpointUrl) {
             this.endpointUrl = endpointUrl;
         }
 
