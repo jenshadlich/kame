@@ -8,6 +8,7 @@ import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 
 import java.util.List;
 import java.util.Map;
@@ -22,14 +23,16 @@ public class Page {
     private final String url;
     private final Headers headers;
     private final Document document;
+    private final String canonicalLink;
     private final List<String> links;
 
-    public Page(Domain domain, String url, Headers headers, Document document, List<String> links) {
+    private Page(Domain domain, String url, Headers headers, Document document, String canonicalLink, List<String> links) {
         this.domain = domain;
         this.hash = new Hash(url);
         this.url = url;
         this.headers = headers;
         this.document = document;
+        this.canonicalLink = canonicalLink;
         this.links = links;
     }
 
@@ -51,6 +54,10 @@ public class Page {
 
     public Document getDocument() {
         return document;
+    }
+
+    public String getCanonicalLink() {
+        return canonicalLink;
     }
 
     public List<String> getLinks() {
@@ -90,10 +97,19 @@ public class Page {
 
         public Page build() {
             final Document document = Jsoup.parse(content);
+
+            final String canonicalLink;
+            Elements canonicalLinks = document.select("link[rel=canonical]");
+            if (canonicalLinks.size() > 0) {
+                canonicalLink = canonicalLinks.first().attr("href");
+            } else {
+                canonicalLink = null;
+            }
+
             final List<String> links = LINK_EXTRACTOR.get(document);
 
             String domain = extractDomainName(url);
-            return new Page(new Domain(domain), url, headers, document, links);
+            return new Page(new Domain(domain), url, headers, document, canonicalLink, links);
         }
 
         public static Builder New() {
