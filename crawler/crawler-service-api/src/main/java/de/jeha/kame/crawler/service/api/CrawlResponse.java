@@ -70,6 +70,10 @@ public class CrawlResponse {
         return links;
     }
 
+    public boolean hasError() {
+        return error != null;
+    }
+
     public static CrawlResponse withSuccess(String id, String date, int statusCode, List<String> links) {
         return new CrawlResponse(id, date, statusCode, links);
     }
@@ -93,5 +97,6 @@ public class CrawlResponse {
         public String getErrorMessage() {
             return errorMessage;
         }
+
     }
 }
