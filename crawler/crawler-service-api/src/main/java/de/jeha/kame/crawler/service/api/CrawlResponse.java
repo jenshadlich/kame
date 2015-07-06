@@ -87,15 +87,15 @@ public class CrawlResponse {
     public static class Error {
 
         @JsonProperty
-        private final String errorMessage;
+        private final String message;
 
         @JsonCreator
-        public Error(@JsonProperty("errorMessage") String errorMessage) {
-            this.errorMessage = errorMessage;
+        public Error(@JsonProperty("message") String message) {
+            this.message = message;
         }
 
-        public String getErrorMessage() {
-            return errorMessage;
+        public String getMessage() {
+            return message;
         }
 
     }

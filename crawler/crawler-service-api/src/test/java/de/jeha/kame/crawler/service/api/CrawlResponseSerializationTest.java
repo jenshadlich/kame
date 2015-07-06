@@ -47,12 +47,12 @@ public class CrawlResponseSerializationTest {
 
         assertEquals(input.getId(), output.getId());
         assertEquals(input.getDate(), output.getDate());
-        assertEquals(input.getError().getErrorMessage(), output.getError().getErrorMessage());
+        assertEquals(input.getError().getMessage(), output.getError().getMessage());
 
         assertEquals("id", output.getId());
         assertEquals("now", output.getDate());
         assertTrue(output.hasError());
-        assertEquals("an error occurred", output.getError().getErrorMessage());
+        assertEquals("an error occurred", output.getError().getMessage());
 
         assertNull(output.getLinks());
         assertNull(output.getStatusCode());
