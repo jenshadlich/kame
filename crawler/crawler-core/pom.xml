@@ -8,7 +8,7 @@
     <name>kame-crawler-core</name>
     <packaging>jar</packaging>
     <version>0.1-SNAPSHOT</version>
-    <description>Crawler</description>
+    <description>Crawler core package</description>
 
     <developers>
         <developer>
