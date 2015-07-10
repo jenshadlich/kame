@@ -6,7 +6,6 @@ import com.mongodb.MongoClientURI;
 import de.jeha.kame.crawler.cli.dao.UrlDAO;
 import de.jeha.kame.crawler.core.Crawler;
 import de.jeha.kame.crawler.core.LinkExtractor;
-import de.jeha.kame.crawler.core.model.Link;
 import de.jeha.kame.crawler.core.types.CrawlResult;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -65,8 +64,8 @@ public class Main {
 
                     LinkExtractor linkExtractor = new LinkExtractor();
 
-                    for (Link rawNewLink : result.getPage().getLinks()) {
-                        String newLink = StringEscapeUtils.escapeHtml4(StringUtils.trim(rawNewLink.getValue()));
+                    for (String rawNewLink : result.getPage().getLinks()) {
+                        String newLink = StringEscapeUtils.escapeHtml4(StringUtils.trim(rawNewLink));
 
                         if (SAME_DOMAIN && !newLink.contains(URL)) {
                             LOG.debug("Skip: {}", newLink);
