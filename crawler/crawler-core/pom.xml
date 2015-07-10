@@ -3,11 +3,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>de.jeha.kame</groupId>
+    <parent>
+        <groupId>de.jeha.kame</groupId>
+        <artifactId>crawler</artifactId>
+        <version>0.1-SNAPSHOT</version>
+    </parent>
     <artifactId>crawler-core</artifactId>
     <name>kame-crawler-core</name>
     <packaging>jar</packaging>
-    <version>0.1-SNAPSHOT</version>
     <description>Crawler core package</description>
 
     <developers>
@@ -17,67 +20,37 @@
         </developer>
     </developers>
 
-    <properties>
-        <project.target.jdk>1.8</project.target.jdk>
-        <project.source.jdk>1.8</project.source.jdk>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <!-- project dependency versions -->
-        <slf4j.version>1.7.10</slf4j.version>
-        <junit.version>4.12</junit.version>
-        <logback.version>1.1.2</logback.version>
-        <commons-io.version>2.4</commons-io.version>
-        <commons-lang3.version>3.3</commons-lang3.version>
-        <httpclient.version>4.3.6</httpclient.version>
-        <jsoup.version>1.8.2</jsoup.version>
-        <!-- plugin versions -->
-        <maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>${commons-lang3.version}</version>
         </dependency>
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
-            <version>${commons-io.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
-            <version>${httpclient.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>commons-logging</groupId>
-                    <artifactId>commons-logging</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.jsoup</groupId>
             <artifactId>jsoup</artifactId>
-            <version>${jsoup.version}</version>
         </dependency>
         <!-- test dependencies -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
         <!-- runtime dependencies -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>${logback.version}</version>
             <scope>runtime</scope>
         </dependency>
     </dependencies>
@@ -89,18 +62,6 @@
                 <filtering>false</filtering>
             </resource>
         </resources>
-
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven-compiler-plugin.version}</version>
-                <configuration>
-                    <source>${project.source.jdk}</source>
-                    <target>${project.target.jdk}</target>
-                </configuration>
-            </plugin>
-        </plugins>
     </build>
 
 </project>
