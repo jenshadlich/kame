@@ -65,4 +65,5 @@ public enum StatusCode {
     private boolean isCodeInClass(int lowerBound) {
         return code >= lowerBound && code <= lowerBound + 99;
     }
+
 }
