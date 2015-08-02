@@ -7,8 +7,8 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class MatchUtils {
 
-    private static final char WILDCARD_C = '*';
-    private static final String WILDCARD = "" + WILDCARD_C;
+    private static final char WILDCARD_CHAR = '*';
+    private static final String WILDCARD_STRING = "" + WILDCARD_CHAR;
     private static final String DOLLAR_SIGN = "$";
 
     /**
@@ -17,11 +17,11 @@ public class MatchUtils {
      * @return true if text match the pattern
      */
     public static boolean wildcardMatch(final String text, final String pattern) {
-        String[] parts = StringUtils.split(pattern, WILDCARD_C);
+        String[] parts = StringUtils.split(pattern, WILDCARD_CHAR);
         String remainder = text;
 
         // no match possible if the 'text' does not start with the first part
-        if (parts.length > 0 && !pattern.startsWith(WILDCARD) && !remainder.startsWith(parts[0])) {
+        if (parts.length > 0 && !pattern.startsWith(WILDCARD_STRING) && !remainder.startsWith(parts[0])) {
             return false;
         }
 
@@ -46,7 +46,7 @@ public class MatchUtils {
         }
 
         // if the pattern does not end with a wildcard the remainder must be empty
-        return remainder.isEmpty() || pattern.endsWith(WILDCARD);
+        return remainder.isEmpty() || pattern.endsWith(WILDCARD_STRING);
     }
 
 }
