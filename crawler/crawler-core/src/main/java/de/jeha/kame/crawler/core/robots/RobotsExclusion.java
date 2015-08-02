@@ -3,7 +3,7 @@ package de.jeha.kame.crawler.core.robots;
 import de.jeha.kame.crawler.core.robots.util.MatchUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +12,13 @@ import java.util.Map;
  */
 public class RobotsExclusion {
 
+    private final static List<String> EMPTY_STRING_LIST;
+
+    static {
+        EMPTY_STRING_LIST = new ArrayList<>();
+        EMPTY_STRING_LIST.add("");
+    }
+
     private final Map<String, List<String>> disallowMap;
     private final List<String> sitemaps;
 
@@ -19,7 +26,7 @@ public class RobotsExclusion {
         this.disallowMap = disallowMap;
         this.sitemaps = sitemaps;
         if (disallowMap.isEmpty()) {
-            this.disallowMap.put(UserAgents.ANY, Arrays.asList(""));
+            this.disallowMap.put(UserAgents.ANY, EMPTY_STRING_LIST);
         }
     }
 
@@ -59,7 +66,7 @@ public class RobotsExclusion {
         // test specified userAgent
         if (disallowMap.containsKey(userAgent.toLowerCase())) {
             for (String disallowedPath : disallowMap.get(userAgent.toLowerCase())) {
-                if("".equals(disallowedPath)) {
+                if ("".equals(disallowedPath)) {
                     return false;
                 }
                 // exact match
