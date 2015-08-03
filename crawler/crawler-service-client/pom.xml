@@ -20,7 +20,7 @@
     <dependencies>
         <dependency>
             <groupId>de.jeha.kame</groupId>
-            <artifactId>crawler-core</artifactId>
+            <artifactId>crawler-common</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>

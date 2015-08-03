@@ -1,8 +1,8 @@
 package de.jeha.kame.crawler.service.client;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import de.jeha.kame.crawler.core.http.ContentType;
-import de.jeha.kame.crawler.core.http.Headers;
+import de.jeha.kame.crawler.common.http.ContentType;
+import de.jeha.kame.crawler.common.http.Headers;
 import de.jeha.kame.crawler.service.api.CrawlRequest;
 import de.jeha.kame.crawler.service.api.CrawlResponse;
 import org.apache.http.HttpResponse;

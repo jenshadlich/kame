@@ -1,6 +1,6 @@
 package de.jeha.kame.crawler.core.robots;
 
-import de.jeha.kame.crawler.core.http.Headers;
+import de.jeha.kame.crawler.common.http.Headers;
 import de.jeha.kame.crawler.core.model.Page;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;

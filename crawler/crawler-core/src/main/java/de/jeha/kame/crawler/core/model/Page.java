@@ -1,7 +1,7 @@
 package de.jeha.kame.crawler.core.model;
 
+import de.jeha.kame.crawler.common.http.Headers;
 import de.jeha.kame.crawler.core.LinkExtractor;
-import de.jeha.kame.crawler.core.http.Headers;
 import de.jeha.kame.crawler.core.robots.RobotsMetaContentExtractor;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;

@@ -1,8 +1,7 @@
 package de.jeha.kame.crawler.core.robots;
 
 import de.jeha.kame.crawler.core.model.Page;
-import de.jeha.kame.crawler.core.types.CrawlResult;
-import de.jeha.kame.crawler.core.http.Headers;
+import de.jeha.kame.crawler.common.http.Headers;
 import org.apache.commons.io.IOUtils;
 import org.junit.Test;
 

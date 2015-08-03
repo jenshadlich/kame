@@ -1,4 +1,4 @@
-package de.jeha.kame.crawler.core.http;
+package de.jeha.kame.crawler.common.http;
 
 import java.util.HashMap;
 import java.util.Map;

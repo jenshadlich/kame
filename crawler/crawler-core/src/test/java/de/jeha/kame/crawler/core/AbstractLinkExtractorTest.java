@@ -1,7 +1,7 @@
 package de.jeha.kame.crawler.core;
 
-import de.jeha.kame.crawler.core.http.ContentType;
-import de.jeha.kame.crawler.core.http.StatusCode;
+import de.jeha.kame.crawler.common.http.ContentType;
+import de.jeha.kame.crawler.common.http.StatusCode;
 import de.jeha.kame.crawler.core.model.Page;
 import de.jeha.kame.crawler.core.types.CrawlResult;
 import org.apache.commons.io.IOUtils;

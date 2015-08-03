@@ -19,6 +19,7 @@
 
     <modules>
         <module>crawler-cli</module>
+        <module>crawler-common</module>
         <module>crawler-core</module>
         <module>crawler-scheduler</module>
         <module>crawler-service</module>

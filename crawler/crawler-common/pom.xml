@@ -8,10 +8,10 @@
         <artifactId>crawler</artifactId>
         <version>0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>crawler-core</artifactId>
-    <name>kame-crawler-core</name>
+    <artifactId>crawler-common</artifactId>
+    <name>kame-crawler-common</name>
     <packaging>jar</packaging>
-    <description>Crawler core package</description>
+    <description>Crawler common package</description>
 
     <developers>
         <developer>
@@ -21,11 +21,6 @@
     </developers>
 
     <dependencies>
-        <dependency>
-            <groupId>de.jeha.kame</groupId>
-            <artifactId>crawler-common</artifactId>
-            <version>${project.version}</version>
-        </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
