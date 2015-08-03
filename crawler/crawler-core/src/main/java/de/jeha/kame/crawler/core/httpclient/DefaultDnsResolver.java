@@ -30,4 +30,5 @@ public class DefaultDnsResolver implements DnsResolver {
 
         return result;
     }
+
 }
