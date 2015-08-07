@@ -32,18 +32,30 @@ public class Headers {
         this.headers.putAll(headers);
     }
 
-    public void put(String key, String value) {
-        headers.put(key, value);
+    /**
+     * Add a value for the given header field name.
+     *
+     * @param fieldName name of header field
+     * @param value     value to add
+     */
+    public void put(String fieldName, String value) {
+        headers.put(fieldName, value);
     }
 
     /**
-     * @param key
-     * @return
+     * Retrieve the value of the given header field name.
+     *
+     * @param fieldName name of header field
+     * @return value or null if not present
      * @todo Replace String parameter with enum
      */
-    public String get(String key) {
-        return headers.get(key);
+    public String get(String fieldName) {
+        return headers.get(fieldName);
     }
+
+    // -----------------------------------------------------------------------------------------------------------------
+    // convenience methods
+    // -----------------------------------------------------------------------------------------------------------------
 
     public String getContentType() {
         return headers.get(CONTENT_TYPE);
