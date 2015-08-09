@@ -8,7 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 public class MatchUtils {
 
     private static final char WILDCARD_CHAR = '*';
-    private static final String WILDCARD_STRING = "" + WILDCARD_CHAR;
+    private static final String WILDCARD_STRING = Character.toString(WILDCARD_CHAR);
     private static final String DOLLAR_SIGN = "$";
 
     /**
