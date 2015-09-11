@@ -41,7 +41,7 @@
         <httpclient.version>4.3.6</httpclient.version>
         <jsoup.version>1.8.2</jsoup.version>
         <jackson.version>2.5.1</jackson.version>
-        <mongodb-driver.version>3.0.2</mongodb-driver.version>
+        <mongodb-driver.version>3.0.3</mongodb-driver.version>
         <commons-validator.version>1.4.1</commons-validator.version>
         <amqp.version>3.5.3</amqp.version>
         <dropwizard.version>0.8.1</dropwizard.version>
