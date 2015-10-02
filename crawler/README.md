@@ -6,7 +6,7 @@ Next TODOs:
 * [x] setup crawler service with dropwizard
 * [ ] implement correct handling of robots.txt (in progress)
 * [ ] create scheduler (service + ui) (in progress)
-* [ ] split crawler-core, e.g. http client stuff or constants to a common module
+* [x] split crawler-core, e.g. http client stuff or constants to a common module
 
 Main components:
 * domain name translation + cache
