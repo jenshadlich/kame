@@ -75,8 +75,7 @@ public class CrawlResource {
             for (String link : result.getPage().getLinks()) {
                 LOG.debug("{}", link);
             }
-            RobotsMetaContent robotsMetaContent = robotsMetaContentExtractor.get(result.getPage());
-            LOG.debug("{}", robotsMetaContent);
+            LOG.debug("{}", result.getPage().getRobotsMetaContent());
 
             return CrawlResponse.withSuccess(
                     crawlId,

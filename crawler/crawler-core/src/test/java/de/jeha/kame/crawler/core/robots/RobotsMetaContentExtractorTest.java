@@ -22,7 +22,7 @@ public class RobotsMetaContentExtractorTest {
         final String content = IOUtils.toString(this.getClass().getResourceAsStream("/simple.html"));
 
         Page page = Page.Builder.New().withContent(content).build();
-        RobotsMetaContent meta = new RobotsMetaContentExtractor().get(page);
+        RobotsMetaContent meta = new RobotsMetaContentExtractor().get(page.getDocument(), page.getHeaders());
 
         assertTrue(meta.isIndex());
         assertTrue(meta.isFollow());
@@ -42,7 +42,7 @@ public class RobotsMetaContentExtractorTest {
                 .withHeaders(headers)
                 .build();
 
-        RobotsMetaContent meta = new RobotsMetaContentExtractor().get(page);
+        RobotsMetaContent meta = new RobotsMetaContentExtractor().get(page.getDocument(), page.getHeaders());
 
         assertFalse(meta.isIndex());
         assertTrue(meta.isFollow());
@@ -58,7 +58,7 @@ public class RobotsMetaContentExtractorTest {
 
         Page page = Page.Builder.New().withContent(content).build();
 
-        RobotsMetaContent meta = new RobotsMetaContentExtractor().get(page);
+        RobotsMetaContent meta = new RobotsMetaContentExtractor().get(page.getDocument(), page.getHeaders());
 
         assertFalse(meta.isIndex());
         assertFalse(meta.isFollow());

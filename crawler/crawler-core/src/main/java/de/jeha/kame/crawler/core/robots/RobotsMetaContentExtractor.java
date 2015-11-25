@@ -11,9 +11,7 @@ import org.jsoup.select.Elements;
  */
 public class RobotsMetaContentExtractor {
 
-    public RobotsMetaContent get(Page page) {
-        Document document = page.getDocument();
-
+    public RobotsMetaContent get(Document document, Headers headers) {
         boolean metaRobotsSet = false;
         boolean robotsTagSet = false;
         boolean index = true;
@@ -30,7 +28,7 @@ public class RobotsMetaContentExtractor {
             archive = !StringUtils.containsIgnoreCase(metaContent, "noarchive");
         }
 
-        String robotsTag = page.getHeaders().get(Headers.X_ROBOTS_TAG);
+        String robotsTag = headers.get(Headers.X_ROBOTS_TAG);
         if (robotsTag != null) {
             robotsTagSet = true;
 

@@ -2,6 +2,7 @@ package de.jeha.kame.crawler.core.model;
 
 import de.jeha.kame.crawler.common.http.Headers;
 import de.jeha.kame.crawler.core.LinkExtractor;
+import de.jeha.kame.crawler.core.robots.RobotsMetaContent;
 import de.jeha.kame.crawler.core.robots.RobotsMetaContentExtractor;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
@@ -25,8 +26,10 @@ public class Page {
     private final Document document;
     private final String canonicalLink;
     private final List<String> links;
+    private final RobotsMetaContent robotsMetaContent;
 
-    private Page(Domain domain, String url, Headers headers, Document document, String canonicalLink, List<String> links) {
+    private Page(Domain domain, String url, Headers headers, Document document, String canonicalLink,
+                 List<String> links, RobotsMetaContent robotsMetaContent) {
         this.domain = domain;
         this.hash = new Hash(url);
         this.url = url;
@@ -34,6 +37,7 @@ public class Page {
         this.document = document;
         this.canonicalLink = canonicalLink;
         this.links = links;
+        this.robotsMetaContent = robotsMetaContent;
     }
 
     public Domain getDomain() {
@@ -64,6 +68,10 @@ public class Page {
         return links;
     }
 
+    public RobotsMetaContent getRobotsMetaContent() {
+        return robotsMetaContent;
+    }
+
     @Override
     public String toString() {
         return ReflectionToStringBuilder.toString(this, ToStringStyle.MULTI_LINE_STYLE);
@@ -74,7 +82,8 @@ public class Page {
     public static class Builder {
 
         private static final LinkExtractor LINK_EXTRACTOR = new LinkExtractor();
-        private static final RobotsMetaContentExtractor ROBOTS_META_CONTENT_EXTRACTOR = new RobotsMetaContentExtractor();
+        private static final RobotsMetaContentExtractor ROBOTS_META_CONTENT_EXTRACTOR =
+                new RobotsMetaContentExtractor();
 
         private String url;
         private String content;
@@ -107,9 +116,10 @@ public class Page {
             }
 
             final List<String> links = LINK_EXTRACTOR.get(document);
+            final RobotsMetaContent robotsMetaContent = ROBOTS_META_CONTENT_EXTRACTOR.get(document, headers);
 
             String domain = extractDomainName(url);
-            return new Page(new Domain(domain), url, headers, document, canonicalLink, links);
+            return new Page(new Domain(domain), url, headers, document, canonicalLink, links, robotsMetaContent);
         }
 
         public static Builder New() {
