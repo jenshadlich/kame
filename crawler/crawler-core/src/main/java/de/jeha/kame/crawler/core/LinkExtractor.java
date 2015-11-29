@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class LinkExtractor {
 
-    public List<String> get(Document document) {
+    public static List<String> get(Document document) {
         final List<String> links = new ArrayList<>();
 
         for (Element e : document.select("a[href]")) {

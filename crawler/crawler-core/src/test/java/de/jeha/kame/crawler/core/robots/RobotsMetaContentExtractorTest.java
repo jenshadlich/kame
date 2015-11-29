@@ -1,7 +1,7 @@
 package de.jeha.kame.crawler.core.robots;
 
-import de.jeha.kame.crawler.core.model.Page;
 import de.jeha.kame.crawler.common.http.Headers;
+import de.jeha.kame.crawler.core.model.Page;
 import org.apache.commons.io.IOUtils;
 import org.junit.Test;
 
@@ -22,7 +22,7 @@ public class RobotsMetaContentExtractorTest {
         final String content = IOUtils.toString(this.getClass().getResourceAsStream("/simple.html"));
 
         Page page = Page.Builder.New().withContent(content).build();
-        RobotsMetaContent meta = new RobotsMetaContentExtractor().get(page.getDocument(), page.getHeaders());
+        RobotsMetaContent meta = RobotsMetaContentExtractor.get(page.getDocument(), page.getHeaders());
 
         assertTrue(meta.isIndex());
         assertTrue(meta.isFollow());
@@ -42,7 +42,7 @@ public class RobotsMetaContentExtractorTest {
                 .withHeaders(headers)
                 .build();
 
-        RobotsMetaContent meta = new RobotsMetaContentExtractor().get(page.getDocument(), page.getHeaders());
+        RobotsMetaContent meta = RobotsMetaContentExtractor.get(page.getDocument(), page.getHeaders());
 
         assertFalse(meta.isIndex());
         assertTrue(meta.isFollow());
@@ -58,7 +58,7 @@ public class RobotsMetaContentExtractorTest {
 
         Page page = Page.Builder.New().withContent(content).build();
 
-        RobotsMetaContent meta = new RobotsMetaContentExtractor().get(page.getDocument(), page.getHeaders());
+        RobotsMetaContent meta = RobotsMetaContentExtractor.get(page.getDocument(), page.getHeaders());
 
         assertFalse(meta.isIndex());
         assertFalse(meta.isFollow());

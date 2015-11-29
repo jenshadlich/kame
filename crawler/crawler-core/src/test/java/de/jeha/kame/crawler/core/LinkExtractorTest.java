@@ -24,7 +24,7 @@ public class LinkExtractorTest extends AbstractLinkExtractorTest {
 
     @Test
     public void testSimple() throws IOException {
-        List<String> links = new LinkExtractor().get(getDocumentFromResource("/simple.html"));
+        List<String> links = LinkExtractor.get(getDocumentFromResource("/simple.html"));
 
         assertEquals(1, links.size());
         assertEquals("http://www.google.com", links.get(0));

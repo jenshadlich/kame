@@ -81,10 +81,6 @@ public class Page {
 
     public static class Builder {
 
-        private static final LinkExtractor LINK_EXTRACTOR = new LinkExtractor();
-        private static final RobotsMetaContentExtractor ROBOTS_META_CONTENT_EXTRACTOR =
-                new RobotsMetaContentExtractor();
-
         private String url;
         private String content;
         private Headers headers = new Headers();
@@ -115,8 +111,8 @@ public class Page {
                 canonicalLink = null;
             }
 
-            final List<String> links = LINK_EXTRACTOR.get(document);
-            final RobotsMetaContent robotsMetaContent = ROBOTS_META_CONTENT_EXTRACTOR.get(document, headers);
+            final List<String> links = LinkExtractor.get(document);
+            final RobotsMetaContent robotsMetaContent = RobotsMetaContentExtractor.get(document, headers);
 
             String domain = extractDomainName(url);
             return new Page(new Domain(domain), url, headers, document, canonicalLink, links, robotsMetaContent);

@@ -1,7 +1,6 @@
 package de.jeha.kame.crawler.core.robots;
 
 import de.jeha.kame.crawler.common.http.Headers;
-import de.jeha.kame.crawler.core.model.Page;
 import org.apache.commons.lang3.StringUtils;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -11,7 +10,7 @@ import org.jsoup.select.Elements;
  */
 public class RobotsMetaContentExtractor {
 
-    public RobotsMetaContent get(Document document, Headers headers) {
+    public static RobotsMetaContent get(Document document, Headers headers) {
         boolean metaRobotsSet = false;
         boolean robotsTagSet = false;
         boolean index = true;
