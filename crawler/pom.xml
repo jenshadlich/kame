@@ -8,7 +8,7 @@
     <name>kame-crawler</name>
     <packaging>pom</packaging>
     <version>0.1-SNAPSHOT</version>
-    <description>Crawler</description>
+    <description>Crawler parent pom</description>
 
     <developers>
         <developer>
