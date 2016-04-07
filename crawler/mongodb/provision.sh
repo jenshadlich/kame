@@ -13,7 +13,7 @@ echo "deb http://repo.mongodb.org/apt/ubuntu "$(lsb_release -sc)"/mongodb-org/3.
 
 sudo apt-get update
 
-MONGO_VERSION=3.0.4
+MONGO_VERSION=3.0.10
 
 # install mongodb
 sudo apt-get install -y mongodb-org=$MONGO_VERSION \
