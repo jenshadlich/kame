@@ -14,7 +14,7 @@
 
     <properties>
         <org.slf4j_version>1.6.1</org.slf4j_version>
-        <logback.version>1.0.3</logback.version>
+        <logback.version>1.2.0</logback.version>
         <junit.version>4.8.2</junit.version>
     </properties>
 
